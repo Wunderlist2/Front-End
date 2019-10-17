@@ -7,8 +7,10 @@ const WelcomePage = () => {
             <h1>Wunderlist 2.0</h1>
             <h2>Organize. Remind. Share</h2>
 
-            <NavLink className="button-SignUp" to="/register">Sign up</NavLink>
-            <NavLink className="button-SignIn" to="/signin">Sign in</NavLink>
+            <NavLink className="button-SignUp" to="/register">Sign up</NavLink><br/>
+            <NavLink className="button-SignIn" to="/signin">Sign in</NavLink><br/>
+            <br/>
+            <NavLink className="button-Main" to="/my">(DEV: Bypass)</NavLink>
         </div>
     )
 }
