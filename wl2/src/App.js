@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import { Route } from "react-router-dom";
+import { BrowserRouter, Route } from "react-router-dom";
 import {
   WelcomePage
   , Register
@@ -20,13 +20,15 @@ import {
 function App() {
   return (
     <div className="App">
-      <Route exact path="/" component={WelcomePage}/>
-      <Route path="/register" component={Register}/>
-      <Route path="/signin" component={Signin}/>
-      <Route path="/profile" component={Profile}/>
-      <Route path="/my" component={Main}/>
-      <Route path="/my/list/:listid" component={ListItem}/>
-      <Route path="/my/list/:listid/task/:taskid" component={TaskItem}/>
+      <BrowserRouter basename="Front-End">
+        <Route exact path="/" component={WelcomePage}/>
+        <Route path="/register" component={Register}/>
+        <Route path="/signin" component={Signin}/>
+        <Route path="/profile" component={Profile}/>
+        <Route path="/my" component={Main}/>
+        <Route path="/my/list/:listid" component={ListItem}/>
+        <Route path="/my/list/:listid/task/:taskid" component={TaskItem}/>
+      </BrowserRouter>
     </div>
   );
 }
