@@ -16,20 +16,20 @@
 
 ## Components
 
-0. Item Component
-    0. ID
-    1. Icon (left)
-    2. Title / Description
+1. Item Component
+    1. ID
+    2. Icon (left)
+    3. Title / Description
 
 1. List Item Component
-    0. ID
-    1. [Item Component]
+    1. ID
+    2. [Item Component]
 
 2. Task Item Component
-    0. ID
-    1. [Item Component]
-    2. Done Status (boolean)
-    3. Reminder Schedule (DateTime)
+    1. ID
+    2. [Item Component]
+    3. Done Status (boolean)
+    4. Reminder Schedule (DateTime)
 
 3. General Dialog
     1. Title - only on Schedule dialog?
