@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { axiosWithAuth } from '../axiosWithAuth';
 import  { Link } from 'react-router-dom';
+import axios from 'axios'
 
 export default function Signin(props) {
     const [logInData, setLogInData] = useState({
@@ -13,8 +13,8 @@ export default function Signin(props) {
         e.preventDefault();
         setIsLoading(true);
 
-        axiosWithAuth()
-            .post('/api/auth/login', logInData)
+        axios
+            .post('https://wunderlist-02.herokuapp.com/api/auth/login', logInData)
             .then(res => {
                 localStorage.setItem('token', res);
                 setIsLoading(false);
