@@ -2,16 +2,15 @@ import React, { useState } from "react";
 import axios from "axios";
 
 const CreateList = props => {
-  const [list, setList] = useState([{ title: "", task: "", setDate: "" }]);
+  const [list, setList] = useState({ title: "", task: "", setDate: "" });
 
-  const addList = note => {
+  const addList = list => {
     const newList = {
       id: Date.now(),
       title: list.title,
       task: list.task,
       setDate: list.setDate
     };
-
     props.setLists([newList, ...props.lists]);
   };
 
@@ -20,17 +19,17 @@ const CreateList = props => {
   };
 
   const handleSubmit = event => {
-    // backend url
-    // const url = "https://wunderlist-2.herokuapp.com/api/todos/";
     event.preventDefault();
     const newList = {
-      id: list.length,
+      //   id: list.length,
       title: list.title,
       task: list.task,
       setDate: list.setDate
     };
+
     axios({
       method: "post",
+      //   url: "https://wunderlist-2.herokuapp.com/api/todos/",
       url: "https://reqres.in/api/users/",
       headers: {
         Authorization: localStorage.getItem("token")
@@ -47,31 +46,31 @@ const CreateList = props => {
   };
 
   return (
-    <div className="form-page-container">
-      <h1>new list</h1>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="title">Title</label>
+    <div className="form-container">
+      <form className="main-form" onSubmit={handleSubmit}>
+        {/* <label htmlFor="title">Title</label> */}
         <input
           type="text"
           id="title"
           name="title"
+          placeholder="type to name your list"
           value={list.title}
           onChange={handleChange}
         />
-        <label htmlFor="task">Task</label>
+        {/* <label htmlFor="task">Task</label> */}
         <input
           type="text"
           id="task"
           name="task"
+          placeholder="task"
           value={list.task}
           onChange={handleChange}
         />
-        <label htmlFor="date">Due Date</label>
+        {/* <label htmlFor="setDate">Due Date</label> */}
         <input
           type="date"
           id="setDate"
           name="setDate"
-          placeholder="Due Date"
           value={list.setDate}
           onChange={handleChange}
         />
