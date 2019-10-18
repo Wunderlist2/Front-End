@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
+import Dialog from "./Dialog";
+import styled from "styled-components";
 
 const CreateList = props => {
   const [list, setList] = useState({ title: "", task: "", setDate: "" });
@@ -46,12 +48,12 @@ const CreateList = props => {
   };
 
   return (
-    <div className="form-container">
+    <FormDiv className="form-container">
       <form className="main-form" onSubmit={handleSubmit}>
         {/* <label htmlFor="title">Title</label> */}
         <input
           type="text"
-          id="title"
+          id="form-input"
           name="title"
           placeholder="type to name your list"
           value={list.title}
@@ -60,7 +62,7 @@ const CreateList = props => {
         {/* <label htmlFor="task">Task</label> */}
         <input
           type="text"
-          id="task"
+          id="form-input"
           name="task"
           placeholder="task"
           value={list.task}
@@ -69,15 +71,28 @@ const CreateList = props => {
         {/* <label htmlFor="setDate">Due Date</label> */}
         <input
           type="date"
-          id="setDate"
+          id="form-input"
           name="setDate"
           value={list.setDate}
           onChange={handleChange}
         />
-        <button type="submit">Submit</button>
+        <button className="form-button" type="submit">
+          +
+        </button>
       </form>
-    </div>
+    </FormDiv>
   );
 };
+
+const FormDiv = styled.div`
+  //   display: none;
+  padding-top: 20px;
+  background: #3d3d3d;
+  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
+  border-top: 50px solid black;
+  height: 50vh;
+  width: 30%;
+`;
 
 export default CreateList;

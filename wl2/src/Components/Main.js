@@ -24,10 +24,16 @@ const Main = props => {
         )}
       </header>
       <section>
-        {!props.user && (
+        {(!props.user || (props.user && !props.lists)) && (
           <div className="NoData">
             <h2>Welcome to Wunderlist!</h2>
             <h3>Click the + button below to add your first list.</h3>
+          </div>
+        )}
+        {props.user && props.lists && (
+          <div className="HasData">
+            {props.scheduledItems && <h2>Scheduled</h2>}
+            {<h2>Lists</h2>}
           </div>
         )}
       </section>

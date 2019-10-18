@@ -1,6 +1,7 @@
 import React from "react";
 import "./App.css";
 import { Route } from "react-router-dom";
+// import PrivateRoute from "./PrivateRoute";
 import {
   WelcomePage,
   Register,
@@ -23,8 +24,8 @@ function App() {
       <Route exact path="/" component={WelcomePage} />
       <Route path="/register" component={Register} />
       <Route path="/signin" component={Signin} />
-      <Route path="/profile" component={Profile} />
       <Route path="/my" component={Main} />
+      <Route path="/my/profile" component={Profile} />
       <Route path="/my/list/:listid" component={ListItem} />
       <Route path="/my/list/:listid/task/:taskid" component={TaskItem} />
     </div>
