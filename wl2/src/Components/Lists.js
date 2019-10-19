@@ -8,11 +8,6 @@ const Card = styled.div`
   margin: 20px 20px;
 `;
 
-const TitleContainer = styled.div`
-  text-align: left;
-  margin-left: 5%;
-`;
-
 const H3 = styled.h3`
   text-align: left;
 `;
@@ -62,7 +57,6 @@ const Lists = props => {
   return (
     <Card>
       <H3>{props.list.title}</H3>
-
       <TaskContainer>
         <TaskPlusCheckbox>
           <p>{props.list.task}</p>

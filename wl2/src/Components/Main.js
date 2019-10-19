@@ -88,7 +88,7 @@ const Main = props => {
             setLists={setLists}
             hideCreateListDialog={props.hideCreateListDialog}
           />
-          {lists.map((list, index) => {
+          {lists.map(list => {
             return <Lists key={list.id} list={list} deleteList={deleteList} />;
           })}
         </div>
