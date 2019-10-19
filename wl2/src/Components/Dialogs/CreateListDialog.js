@@ -48,9 +48,17 @@ const CreateListDialog = props => {
   };
 
   return (
-    <MaskDiv className="Dialog CreateListDialog hidden" onClick={() => props.hideCreateListDialog()}>
+    <MaskDiv
+      className="Dialog CreateListDialog hidden"
+      onClick={() => props.hideCreateListDialog()}
+    >
       <FormContainerDiv className="form-container">
-        <span className="close-dialog" onClick={() => props.hideCreateListDialog()}>X</span>
+        <span
+          className="close-dialog"
+          onClick={() => props.hideCreateListDialog()}
+        >
+          X
+        </span>
         <form className="main-form" onSubmit={handleSubmit}>
           {/* <label htmlFor="title">Title</label> */}
           <input
@@ -94,7 +102,7 @@ const MaskDiv = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(128,128,128,0.5);
+  background-color: rgba(128, 128, 128, 0.5);
 `;
 
 const FormContainerDiv = styled.div`
