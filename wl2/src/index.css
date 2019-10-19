@@ -1,5 +1,9 @@
+html {
+  scroll-padding-top: 50px;
+  margin-top: 50px;
+}
 body {
-  margin: 0;
+  margin: 50px auto 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -7,11 +11,122 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
+.hidden {
+  display: none;
+}
+.form-container {
+  margin: calc(50vh - 25vh) auto;
+}
+.close-dialog {
+  position: relative;
+  top: 10px;
+  right: -175px;
+  color: white;
+  cursor: pointer;
+}
+.main-form {
+  display: flex;
+  flex-direction: column;
+  padding: 0 15px;
+  background: black;
+}
+#form-input {
+  background: rgba(0, 0, 0, 0);
+  color: white;
+  border: 0;
+  margin-bottom: 5px;
+}
+#form-input::placeholder {
+  color: white;
+}
+.form-button {
+  background: rgba(0, 0, 0, 0);
+  border: none;
+  color: white;
+  text-align: right;
+  padding: 15px;
+}
+.searchButton {
+  font-size: xx-large;
+}
+.createButton {
+  font-size: xx-large;
+  color: white;
+  background-color: black;
+  padding: 5px 7px;
+  border: 0 solid black;
+  border-radius: 42%;
+  cursor: pointer;
+}
+header {
+  z-index: 10;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 50px;
+  padding: 20px;
+  background: linear-gradient(to top, #FFFFFF00, #FFFFFFFF 15%);
+}
+header .title {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: flex-end;
+  justify-content: space-around;
+  align-content: flex-end;
+  justify-content: space-between;
+  width: 100%;
+}
+header .title .titleMessage {
+  margin: auto 0;
+  padding-bottom: 10px;
+  text-align: left;
+  font-size: xx-large;
+  font-weight: bold;
+}
+header .title .userPhoto {
+  margin-top: 0;
+  margin-right: 35px;
+}
+header .title .userPhoto img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.mainContent {
+  width: 80%;
+  margin: 0 auto;
+}
+.subSectionTitle {
+  text-align: left;
+}
+.item {
+  text-align: left;
+  margin-left: 50px;
+}
+footer {
+  z-index: 10;
+  position: sticky;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 75px;
+  margin: 0 auto;
+  background: linear-gradient(to bottom, #FFFFFF00, #FFFFFFFF);
+}
 .footerItems {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
   align-items: flex-end;
-  justify-content: space-between;
+  justify-content: space-around;
   align-content: flex-end;
+  margin-bottom: 0;
+}
+.copyright {
+  margin: 0 auto;
+  position: relative;
+  bottom: 0.125em;
 }

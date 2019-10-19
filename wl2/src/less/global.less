@@ -1,5 +1,11 @@
+html {
+  scroll-padding-top: @top-spacing;
+  margin-top: @top-spacing;
+}
+
 body {
-  margin: 0;
+  margin: @top-spacing auto 0;
+  
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
@@ -10,4 +16,56 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+.hidden {
+  display: none;
+}
+
+.form-container {
+  margin: calc(50vh - 25vh) auto;
+}
+.close-dialog {
+  position: relative;
+  top: 10px;
+  right: -175px;
+  color: white;
+  cursor: pointer;
+}
+.main-form {
+  display: flex;
+  flex-direction: column;
+  padding: 0 15px;
+  background: black;
+}
+#form-input {
+  background: rgba(0,0,0,0);
+  color: white;
+  border: 0;
+  margin-bottom: 5px;
+}
+#form-input::placeholder {
+  color: white;
+}
+.form-button {
+  background: rgba(0,0,0,0);
+  border: none;
+  color: white;
+  // margin-top: 60%;
+  text-align: right;
+  padding: 15px;
+}
+
+
+.searchButton {
+  font-size: xx-large;
+}
+.createButton {
+  font-size: xx-large;
+  color: white;
+  background-color: black;
+  padding: 5px 7px;
+  border: 0 solid black;
+  border-radius: 42%;
+  cursor: pointer;
 }
