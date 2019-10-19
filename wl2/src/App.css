@@ -20,29 +20,3 @@
 .App-link {
   color: #09d3ac;
 }
-
-.main-form {
-  background: #3d3d3d;
-}
-
-.main-form {
-  display: flex;
-  flex-direction: column;
-}
-
-#form-input {
-  background: #3d3d3d;
-  color: white;
-  border: 0;
-  margin-bottom: 5px;
-}
-#form-input::placeholder {
-  color: white;
-}
-
-.form-button {
-  background: #3d3d3d;
-  border: none;
-  color: white;
-  margin-top: 60%;
-}

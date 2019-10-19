@@ -9,8 +9,6 @@ const WelcomePage = () => {
 
             <NavLink className="button-SignUp" to="/register">Sign up</NavLink><br/>
             <NavLink className="button-SignIn" to="/signin">Sign in</NavLink><br/>
-            <br/>
-            <NavLink className="button-Main" to="/my">(DEV: Bypass)</NavLink>
         </div>
     )
 }
