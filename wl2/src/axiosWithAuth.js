@@ -6,7 +6,7 @@ export const axiosWithAuth = () => {
         baseURL: 'https://wunderlist-02.herokuapp.com',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': `${token}`,
+            'Authorization': `Bearer ${token}`,
         },
     });
 };
