@@ -48,7 +48,7 @@ const CreateListDialog = props => {
   };
 
   return (
-    <MaskDiv className="Dialog CreateListDialog" onClick={() => props.hideCreateListDialog()}>
+    <MaskDiv className="Dialog CreateListDialog hidden" onClick={() => props.hideCreateListDialog()}>
       <FormContainerDiv className="form-container">
         <span className="close-dialog" onClick={() => props.hideCreateListDialog()}>X</span>
         <form className="main-form" onSubmit={handleSubmit}>
