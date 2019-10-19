@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { axiosWithAuth } from '../axiosWithAuth';
+import axios from 'axios';
 
 export default function Register(props) {
     const [signUpData, setSignUpData] = useState({});
@@ -10,8 +10,8 @@ export default function Register(props) {
         e.preventDefault();
         setIsLoading(true);
 
-        axiosWithAuth()
-            .post('/api/auth/register', signUpData)
+        axios
+            .post('https://wunderlist-02.herokuapp.com/api/auth/register', signUpData)
             .then(res => {
                 localStorage.setItem('token', res);
                 setIsLoading(false);
