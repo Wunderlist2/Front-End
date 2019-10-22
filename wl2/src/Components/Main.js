@@ -67,7 +67,7 @@ const Main = props => {
             <p className="item">A, reprehenderit, pariatur!</p>
             <p className="item">Iusto, debitis, dolore.</p>
             <p className="item">Est vitae, distinctio!</p>
-            {<h2 className="subSectionTitle">Lists</h2>}
+            {<h2 className="subSectionTitle">My Lists</h2>}
             <p className="item">Lorem ipsum dolor.</p>
             <p className="item">Sint, facilis, ex.</p>
             <p className="item">A, reprehenderit, pariatur!</p>

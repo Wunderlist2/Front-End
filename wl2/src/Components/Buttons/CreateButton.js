@@ -10,7 +10,7 @@ const CreateButton = props => {
 
   return (
     <div onClick={() => props.plusAction()}>
-      <FontAwesomeIcon icon={faPlus} className="createButton" />
+      <FontAwesomeIcon icon={faPlus} className="button createButton" />
     </div>
   );
 };
