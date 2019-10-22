@@ -89,6 +89,34 @@ code {
   border-radius: 42%;
   cursor: pointer;
 }
+.search-dialog-container {
+  display: block;
+  border-radius: 10px;
+  background: black;
+  height: 150px;
+  width: 30%;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+.search-dialog-container .search-dialog-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.search-dialog-container .search-dialog-form input {
+  border-radius: 8px;
+  padding: 10px 20px;
+  width: 60%;
+  border: none;
+  background: black;
+  color: white;
+}
+.search-dialog-container .search-dialog-form input:focus {
+  outline: none;
+}
 header {
   z-index: 10;
   position: fixed;
