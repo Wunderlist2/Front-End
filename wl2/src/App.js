@@ -13,7 +13,6 @@ import {
   ListItem,
   TaskItem
 } from "./Components";
-import blobShape from "./blob.svg";
 
 const showDialog = dialog => {
   console.log("dialog: ", dialog);
