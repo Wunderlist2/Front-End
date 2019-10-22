@@ -46,6 +46,26 @@ code {
   text-align: right;
   padding: 15px;
 }
+.formWidth {
+  width: 150px;
+}
+.button {
+  padding: 10px;
+  border-radius: 5px;
+}
+.button .light {
+  color: black;
+  background-color: white;
+  border: 1px solid black;
+}
+.button .dark {
+  color: white;
+  background-color: black;
+  border: 1px solid white;
+}
+.textBold {
+  font-weight: bold;
+}
 .searchButton {
   font-size: xx-large;
 }

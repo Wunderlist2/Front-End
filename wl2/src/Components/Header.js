@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import defaultPhoto from '../generic-user-icon.jpg'; // with import
+import defaultPhoto from '../generic-user-icon.jpg';
 
 let userHeader = {
   photo: localStorage.getItem('photo') || defaultPhoto

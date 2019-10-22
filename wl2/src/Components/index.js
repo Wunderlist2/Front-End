@@ -1,8 +1,8 @@
 //Authentication
 export { default as Register } from './Authentication/Register';
-// export { default as ForgotPassword } from './Authentication/ForgotPassword';
+export { default as ForgotPassword } from './Authentication/ForgotPassword';
 export { default as Signin } from './Authentication/Signin';
-// export { default as Signout } from './Authentication/Signout';
+export { default as Signout } from './Authentication/Signout';
 
 //Content/Layout
 export { default as WelcomePage } from './WelcomePage';
