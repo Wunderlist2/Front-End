@@ -1,6 +1,10 @@
 
 html {
-  font-size: 62.5%;
+  font-size: calc(10px + 0.25vw);
+  @media @desktop4k {
+    font-size: calc(10px + 0.33vw);
+  }
+
   scroll-padding-top: @top-spacing;
   margin-top: @top-spacing;
 }
@@ -13,6 +17,28 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  
+  transition: all 0.6s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+
+  background-image: url('./blob.svg'), url('./blob.svg');
+  background-position: top 950px left -180px, top -350px right -150px;
+  background-size: 66%, 55%;
+  background-repeat: repeat-y, repeat-y;
+  
+  @media @desktop4k {
+    background-image: url('./blob.svg'), url('./blob.svg'), url('./blob.svg');
+    background-position: top 950px left -180px, top -320px center, top -1280px right -150px;
+    background-size: 42%, 32%, 39%;
+    background-repeat: repeat-y, repeat-y, repeat-y;
+  }
+}
+
+.welcomepage-container {
+  margin-top: calc((50px * 2.5) * -1);
+  // https://github.com/css-modules/postcss-icss-values/issues/64#issuecomment-241285628
+}
+.inner-container {
+  height: 100vh;
 }
 
 code {
@@ -63,26 +89,7 @@ code {
 }
 
 .button {
-  padding: 10px;
-  border-radius: 5px;
-  .light {
-    @fg: black;
-    @bg: white;
-    color: @fg;
-    background-color: @bg;
-    border: 1px solid @fg;
-  }
-  .dark {
-    @fg: white;
-    @bg: black;
-    color: @fg;
-    background-color: @bg;
-    border: 1px solid @fg;
-  }
-}
-
-.textBold {
-  font-weight: bold;
+  cursor: pointer;
 }
 
 .searchButton {

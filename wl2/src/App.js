@@ -13,7 +13,6 @@ import {
   ,ListItem
   ,TaskItem
 } from "./Components";
-import blobShape from './blob.svg';
 
 const showDialog = (dialog) => {
   console.log('dialog: ', dialog);
@@ -62,7 +61,7 @@ function App() {
     <div className="App">
       <BrowserRouter basename="Front-End">
         <Route exact path="/" component={WelcomePage}/>
-        
+
         <Route path="/register" component={Register}/>
         <Route path="/signin" component={Signin}/>
         <Route path="/forgot" component={ForgotPassword}/>

@@ -10,7 +10,7 @@ library.add(fab);
 const WelcomePage = props => {
   return (
     <div className="welcomepage-container">
-      <Container>
+      <Container className="inner-container">
         <TextDiv>
           <H1>Wunderlist 2.0</H1>
           <H2>Organize. Remind. Share.</H2>
@@ -24,11 +24,11 @@ const WelcomePage = props => {
         <br />
         <div className="welcomepage-socialmedia-container">
           or sign in with:&nbsp;
-          <FontAwesomeIcon icon={["fab", "twitter-square"]} />
+          <FontAwesomeIcon className="button" icon={["fab", "twitter-square"]} />
           &nbsp;
-          <FontAwesomeIcon icon={["fab", "facebook"]} />
+          <FontAwesomeIcon className="button" icon={["fab", "facebook"]} />
           &nbsp;
-          <FontAwesomeIcon icon={["fab", "google-plus"]} />
+          <FontAwesomeIcon className="button" icon={["fab", "google-plus"]} />
         </div>
       </Container>
     </div>
@@ -41,8 +41,6 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-top: 100px;
-  margin-bottom: 200px;
 `;
 
 const TextDiv = styled.div`
@@ -71,6 +69,7 @@ const BlackButton = styled.button`
   padding: 15px 3px;
   width: 400px;
   border: 2px solid black;
+  cursor: pointer;
 
   &:hover {
     opacity: 0.7;
@@ -88,6 +87,7 @@ const WhiteButton = styled.button`
   padding: 15px 3px;
   width: 400px;
   border: 2px solid black;
+  cursor: pointer;
 
   &:hover {
     opacity: 0.7;
