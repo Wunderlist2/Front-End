@@ -1,5 +1,11 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { fab } from '@fortawesome/free-brands-svg-icons';
 import styled from "styled-components";
+
+library.add(fab);
 
 const WelcomePage = props => {
   return (
@@ -22,6 +28,19 @@ const WelcomePage = props => {
     </div>
   );
 };
+
+
+            <NavLink className="formWidth button dark textBold" to="/register">Sign up</NavLink><br/>
+            <NavLink className="formWidth button light" to="/signin">Sign in</NavLink><br/>
+            <NavLink className="forgotPassword" to="/forgot">Forgot Password?</NavLink><br/>
+
+            or sign in with:&nbsp;
+              <FontAwesomeIcon icon={['fab', 'twitter-square']}/>&nbsp;
+              <FontAwesomeIcon icon={['fab', 'facebook']}/>&nbsp;
+              <FontAwesomeIcon icon={['fab', 'google-plus']}/>
+        </div>
+    )
+}
 
 //styled components for welcome page
 const Container = styled.div`

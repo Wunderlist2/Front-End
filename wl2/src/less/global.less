@@ -1,3 +1,4 @@
+
 html {
   font-size: 62.5%;
   scroll-padding-top: @top-spacing;
@@ -55,6 +56,33 @@ code {
   // margin-top: 60%;
   text-align: right;
   padding: 15px;
+}
+
+.formWidth {
+  width: 150px;
+}
+
+.button {
+  padding: 10px;
+  border-radius: 5px;
+  .light {
+    @fg: black;
+    @bg: white;
+    color: @fg;
+    background-color: @bg;
+    border: 1px solid @fg;
+  }
+  .dark {
+    @fg: white;
+    @bg: black;
+    color: @fg;
+    background-color: @bg;
+    border: 1px solid @fg;
+  }
+}
+
+.textBold {
+  font-weight: bold;
 }
 
 .searchButton {

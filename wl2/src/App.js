@@ -6,11 +6,14 @@ import {
   WelcomePage
   ,Register
   ,Signin
+  ,ForgotPassword
+  ,Signout
   ,Profile
   ,Main
   ,ListItem
   ,TaskItem
 } from "./Components";
+import blobShape from './blob.svg';
 
 const showDialog = (dialog) => {
   console.log('dialog: ', dialog);
@@ -40,13 +43,31 @@ const hideCreateListDialog = () => {
   hideDialog('CreateListDialog');
 }
 
+const showSearchDialog = () => {
+  showDialog('SearchDialog');
+}
+const hideSearchDialog = () => {
+  hideDialog('SearchDialog');
+}
+
+const showSetReminderDialog = () => {
+  showDialog('SetReminderDialog');
+}
+const hideSetReminderDialog = () => {
+  hideDialog('SetReminderDialog');
+}
+
 function App() {
   return (
     <div className="App">
       <BrowserRouter basename="Front-End">
         <Route exact path="/" component={WelcomePage}/>
+        
         <Route path="/register" component={Register}/>
         <Route path="/signin" component={Signin}/>
+        <Route path="/forgot" component={ForgotPassword}/>
+        <Route path="/signout" component={Signout}/>
+
         <PrivateRoute path="/my" component={Main}
           showDialog={showDialog}
           hideDialog={hideDialog}
