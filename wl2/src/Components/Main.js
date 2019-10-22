@@ -1,54 +1,106 @@
 import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
 import {
-  // ScheduledItems
-  SearchButton,
-  CreateList
+  Header,
+  // ,ScheduledItems
+  Lists,
+  CreateListDialog,
+  Footer,
+  SearchDialog
 } from "./";
-import Lists from "./Lists";
 
 const Main = props => {
+  // const [user, setUser] = useState({
+  //   token: "",
+  //   userID: "",
+  //   message: ""
+  // });
   const [lists, setLists] = useState([]);
+  const [scheduledItems, setScheduledItems] = useState([]);
+
+  // setUser({
+  //   ...user,
+  //   token: localStorage.getItem('token'),
+  //   userID: localStorage.getItem('userID'),
+  //   message: localStorage.getItem('message')
+  // });
+
+  let user = {
+    token: localStorage.getItem("token"),
+    userID: localStorage.getItem("userID"),
+    message: localStorage.getItem("message")
+  };
+  // console.log('user: ', user);
+
+  if (!user.token) {
+    console.log("Token not found in local storage... Redirecting to Signin.");
+    localStorage.clear();
+    props.history.push("/");
+  }
+
+  let headerMessage = user.message;
+
+  const deleteList = id => {
+    const newArray = lists.filter(list => {
+      return list.id !== id;
+    });
+    setLists(newArray);
+  };
+
   return (
     <React.Fragment>
-      <header>
-        <div className="Greeting">
-          <h1>Hello{props.user && ` , ${props.user.firstName}`}!</h1>
-        </div>
-        {props.user && (
-          <div>
-            <NavLink to="/profile">
-              <img src={props.user.photo} alt="User" />
-            </NavLink>
-          </div>
-        )}
-      </header>
-      <section>
-        {(!props.user || (props.user && !props.lists)) && (
-          <div className="NoData">
+      <Header {...props} message={headerMessage} />
+      <section className="mainContent">
+        {(!user || (user && !lists)) && (
+          <div className="noData">
             <h2>Welcome to Wunderlist!</h2>
             <h3>Click the + button below to add your first list.</h3>
           </div>
         )}
-        {props.user && props.lists && (
-          <div className="HasData">
-            {props.scheduledItems && <h2>Scheduled</h2>}
-            {<h2>Lists</h2>}
+        {user && lists && (
+          <div className="hasData">
+            {scheduledItems && <h2 className="subSectionTitle">Scheduled</h2>}
+            <p className="item">Lorem ipsum dolor sit amet.</p>
+            <p className="item">Earum velit aperiam dignissimos quis.</p>
+            <p className="item">Enim molestiae libero odit, illum.</p>
+            <p className="item">Lorem ipsum dolor.</p>
+            <p className="item">Sint, facilis, ex.</p>
+            <p className="item">A, reprehenderit, pariatur!</p>
+            <p className="item">Iusto, debitis, dolore.</p>
+            <p className="item">Est vitae, distinctio!</p>
+            {<h2 className="subSectionTitle">My Lists</h2>}
+            <p className="item">Lorem ipsum dolor.</p>
+            <p className="item">Sint, facilis, ex.</p>
+            <p className="item">A, reprehenderit, pariatur!</p>
+            <p className="item">Iusto, debitis, dolore.</p>
+            <p className="item">Est vitae, distinctio!</p>
+            <p className="item">Lorem ipsum dolor sit amet.</p>
+            <p className="item">Earum velit aperiam dignissimos quis.</p>
+            <p className="item">Enim molestiae libero odit, illum.</p>
+            <p className="item">Lorem ipsum dolor.</p>
+            <p className="item">Sint, facilis, ex.</p>
+            <p className="item">A, reprehenderit, pariatur!</p>
+            <p className="item">Iusto, debitis, dolore.</p>
+            <p className="item">Est vitae, distinctio!</p>
           </div>
         )}
-      </section>
-      <footer>
-        <div className="footerItems">
-          <SearchButton />
-          <CreateList lists={lists} setLists={setLists} />
-          <div>&copy;2019 Wunderlist</div>
-        </div>
         <div>
-          {lists.map((list, index) => {
-            return <p key={index}>{list.title}</p>;
+          <CreateListDialog
+            lists={lists}
+            setLists={setLists}
+            hideCreateListDialog={props.hideCreateListDialog}
+          />
+          {lists.map(list => {
+            return <Lists key={list.id} list={list} deleteList={deleteList} />;
           })}
         </div>
-      </footer>
+      </section>
+      <Footer
+        {...props}
+        showSearch={true}
+        lists={lists}
+        setLists={setLists}
+        plusAction={props.showCreateListDialog}
+      />
     </React.Fragment>
   );
 };
