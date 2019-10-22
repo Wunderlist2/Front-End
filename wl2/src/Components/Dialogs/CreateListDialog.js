@@ -31,15 +31,14 @@ const CreateListDialog = props => {
 
     axios({
       method: "post",
-      url: "https://wunderlist-2.herokuapp.com/api/todos/",
-      // test-url: "https://reqres.in/api/users/",
+      // url: "https://wunderlist-2.herokuapp.com/api/todos/",
+      url: "https://reqres.in/api/users/",
       headers: {
         Authorization: localStorage.getItem("token")
       },
       data: newList
     })
       .then(response => {
-        console.log(response.data);
         addList(response.data);
       })
       .catch(error => {
