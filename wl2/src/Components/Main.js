@@ -4,7 +4,8 @@ import {
   // ,ScheduledItems
   Lists,
   CreateListDialog,
-  Footer
+  Footer,
+  SearchDialog
 } from "./";
 
 const Main = props => {
