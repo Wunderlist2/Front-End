@@ -48,6 +48,7 @@ const TextDiv = styled.div`
 `;
 
 const H1 = styled.h1`
+  text-align: center;
   font-size: 5.5rem;
 `;
 
