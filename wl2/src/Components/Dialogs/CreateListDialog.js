@@ -54,7 +54,7 @@ const CreateListDialog = props => {
     >
       <FormContainerDiv className="form-container">
         <span
-          className="close-dialog"
+          className="button close-dialog"
           onClick={() => props.hideCreateListDialog()}
         >
           X

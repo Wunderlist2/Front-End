@@ -44,7 +44,7 @@ const SearchDialog = props => {
           //   value={searchTerm}
           //   onChange={handleChange}
         />
-        <Button onClick={props.toggleSearchDialog}>Hide</Button>
+        <Button onClick={props.toggleSearchDialog} className="button">Hide</Button>
       </form>
     </div>
   );

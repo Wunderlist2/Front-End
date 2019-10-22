@@ -9,7 +9,7 @@ library.add(faSearch);
 const SearchButton = props => {
   return (
     <div onClick={props.toggleSearchDialog}>
-      <FontAwesomeIcon icon={faSearch} className="searchButton" />
+      <FontAwesomeIcon icon={faSearch} className="button searchButton" />
       {props.showSearchDialog && <SearchDialog />}
     </div>
   );

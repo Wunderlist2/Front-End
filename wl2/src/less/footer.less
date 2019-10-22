@@ -5,6 +5,9 @@ footer {
   left: 0;
   width: 100%;
   height: @bottom-spacing;
+  @media @desktop4k {
+    height: calc(@bottom-spacing * 2);
+  }
   margin: 0 auto;
   // background: linear-gradient(to bottom, #FFFFFF00, #FFFFFFFF);
 }
