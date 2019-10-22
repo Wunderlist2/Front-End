@@ -1,32 +1,37 @@
-import React from "react";
-import {
-  SearchButton
-  ,CreateButton
-} from "./";
+import React, { useState } from "react";
+import { SearchButton, CreateButton } from "./";
 
-const Footer = (props) => {
+const Footer = props => {
+  const [showSearchDialog, setShowSearchDialog] = useState(false);
   const {
-    showSearch
+    showSearch,
     // , lists
     // , setLists
-    ,plusAction
+    plusAction
   } = props;
 
-  return(
+  const toggleSearchDialog = () => {
+    setShowSearchDialog(!showSearchDialog);
+  };
+
+  return (
     <footer>
       <div className="footerItems">
-        {(showSearch === true) &&
+        {showSearch === true && (
           <React.Fragment>
-            <SearchButton />
+            <SearchButton
+              toggleSearchDialog={toggleSearchDialog}
+              showSearchDialog={showSearchDialog}
+            />
             <span></span>
             <span></span>
           </React.Fragment>
-        }
+        )}
         <CreateButton plusAction={plusAction} />
       </div>
       {/* <h5 className="copyright">&copy;2019 Wunderlist</h5> */}
     </footer>
-  )
-}
+  );
+};
 
 export default Footer;
