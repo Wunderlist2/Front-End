@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { axiosWithAuth } from '../axiosWithAuth';
+import axios from 'axios';
 
 export default function Register(props) {
     const [signUpData, setSignUpData] = useState({});
@@ -10,8 +10,8 @@ export default function Register(props) {
         e.preventDefault();
         setIsLoading(true);
 
-        axiosWithAuth()
-            .post('/api/auth/register', signUpData)
+        axios
+            .post('https://wunderlist-02.herokuapp.com/api/auth/register', signUpData)
             .then(res => {
                 localStorage.setItem('token', res);
                 setIsLoading(false);
@@ -45,42 +45,42 @@ export default function Register(props) {
                         <div>
                             <div>
                                 <div>
-                                <input
-                                    autoComplete="fname"
-                                    name="firstName"
-                                    id="firstName"
-                                    label="First Name"
-                                    onChange={handleChanges}
-                                />
+                                    <input
+                                        autoComplete="fname"
+                                        name="firstName"
+                                        id="firstName"
+                                        label="First Name"
+                                        onChange={handleChanges}
+                                    />
                                 </div>
                                 <div>
-                                <input
-                                    id="lastName"
-                                    label="Last Name"
-                                    name="lastName"
-                                    autoComplete="lname"
-                                    onChange={handleChanges}
-                                />
+                                    <input
+                                        id="lastName"
+                                        label="Last Name"
+                                        name="lastName"
+                                        autoComplete="lname"
+                                        onChange={handleChanges}
+                                    />
                                 </div>
                                 <div>
-                                <input
-                                    id="email"
-                                    type="email"
-                                    label="Email"
-                                    name="email"
-                                    autoComplete="email"
-                                    onChange={handleChanges}
-                                />
+                                    <input
+                                        id="email"
+                                        type="email"
+                                        label="Email"
+                                        name="email"
+                                        autoComplete="email"
+                                        onChange={handleChanges}
+                                    />
                                 </div>
                                 <div>
-                                <input
-                                    name="password"
-                                    label="Password"
-                                    type="password"
-                                    id="password"
-                                    autoComplete="current-password"
-                                    onChange={handleChanges}
-                                />
+                                    <input
+                                        name="password"
+                                        label="Password"
+                                        type="password"
+                                        id="password"
+                                        autoComplete="current-password"
+                                        onChange={handleChanges}
+                                    />
                                 </div>
                                 <div>
                                     <p>
