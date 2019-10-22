@@ -35,7 +35,7 @@ const WelcomePage = props => {
   );
 };
 
-//styled components for welcome page
+//styled components for welcome page//
 const Container = styled.div`
   display: flex;
   flex-direction: column;
