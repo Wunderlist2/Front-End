@@ -8,6 +8,6 @@ const Signout = () => {
   )
 }
 
-localStorage.clear();
+// localStorage.clear();
 
 export default Signout;
