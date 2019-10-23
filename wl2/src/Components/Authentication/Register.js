@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import axios from 'axios';
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import axios from "axios";
 
 export default function Register(props) {
   const [signUpData, setSignUpData] = useState({});
@@ -11,24 +11,24 @@ export default function Register(props) {
     setIsLoading(true);
 
     axios
-      .post('https://wunderlist-02.herokuapp.com/api/auth/register', signUpData)
+      .post("https://wunderlist-02.herokuapp.com/api/auth/register", signUpData)
       .then(res => {
-        console.log('res: ', res);
-        localStorage.setItem('token', res.data.token);
-        localStorage.setItem('message', res.data.message);
-        localStorage.setItem('userID', res.data.userID);
+        console.log("res: ", res);
+        localStorage.setItem("token", res.data.token);
+        localStorage.setItem("message", res.data.message);
+        localStorage.setItem("userID", res.data.userID);
         setIsLoading(false);
-        props.history.push('/my');
+        props.history.push("/my");
       })
-      .catch(err => console.log('Sign Up Error: ', err))
-  }
+      .catch(err => console.log("Sign Up Error: ", err));
+  };
 
   const handleChanges = e => {
     setSignUpData({
       ...signUpData,
-      [e.target.name]: e.target.value,
-    })
-  }
+      [e.target.name]: e.target.value
+    });
+  };
 
   if (isLoading === true) {
     return (
@@ -36,10 +36,9 @@ export default function Register(props) {
         <div>Loading...</div>
       </>
     );
-  }
-  else {
+  } else {
     return (
-      <div>
+      <div className="registerContainer">
         <div>
           <div>
             <h1>Register</h1>
@@ -48,6 +47,7 @@ export default function Register(props) {
             <div>
               <div>
                 <div>
+                  <label htmlFor="firstName">First Name</label>
                   <input
                     id="firstName"
                     name="firstName"
@@ -58,6 +58,7 @@ export default function Register(props) {
                   />
                 </div>
                 <div>
+                  <label htmlFor="lastName">Last Name</label>
                   <input
                     id="lastName"
                     name="lastName"
@@ -68,6 +69,7 @@ export default function Register(props) {
                   />
                 </div>
                 <div>
+                  <label htmlFor="username">Username</label>
                   <input
                     id="username"
                     name="username"
@@ -79,6 +81,7 @@ export default function Register(props) {
                   />
                 </div>
                 <div>
+                  <label htmlFor="password">Password</label>
                   <input
                     id="password"
                     name="password"
@@ -89,21 +92,46 @@ export default function Register(props) {
                     placeholder="Password"
                   />
                 </div>
-                <div>
+                <div className="termsOfServiceDiv">
                   <p>
-                    <span>By signing up, you agree to Wunderlist's <font color="FF4081"><a href="https://getfeasting.com/terms" target="_blank" rel="noopener noreferrer">Terms of Service</a>, <a href="https://getfeasting.com/privacy" target="_blank" rel="noopener noreferrer">Privacy Policy</a> <font color="757575">and</font> <a href="https://getfeasting.com/cookie" target="_blank" rel="noopener noreferrer">Cookie Policy</a></font></span>
+                    <span>
+                      By signing up, you agree to Wunderlist's{" "}
+                      <font color="FF4081">
+                        <a
+                          href="https://getfeasting.com/terms"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          Terms of Service
+                        </a>
+                        ,{" "}
+                        <a
+                          href="https://getfeasting.com/privacy"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          Privacy Policy
+                        </a>{" "}
+                        <font color="757575">and</font>{" "}
+                        <a
+                          href="https://getfeasting.com/cookie"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          Cookie Policy
+                        </a>
+                      </font>
+                    </span>
                   </p>
                 </div>
               </div>
             </div>
-            <button type="submit">
+            <button className="blackButton" type="submit">
               Sign Up
             </button>
             <div>
               <div>
-                <Link to={`/signin`} >
-                  Already have an account? Sign in
-                </Link>
+                <Link to={`/signin`}>Already have an account? Sign in</Link>
               </div>
             </div>
           </form>
