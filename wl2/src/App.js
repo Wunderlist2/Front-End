@@ -15,9 +15,7 @@ import {
 } from "./Components";
 
 const showDialog = dialog => {
-  console.log("dialog: ", dialog);
   let d = document.querySelector(`.${dialog}`);
-  console.log("d: ", d);
   if (d) {
     d.classList.remove("hidden");
   } else {
@@ -25,9 +23,7 @@ const showDialog = dialog => {
   }
 };
 const hideDialog = dialog => {
-  console.log("dialog: ", dialog);
   let d = document.querySelector(`.${dialog}`);
-  console.log("d: ", d);
   if (d) {
     d.classList.add("hidden");
   } else {
@@ -41,7 +37,6 @@ const showCreateListDialog = () => {
 const hideCreateListDialog = () => {
   hideDialog("CreateListDialog");
 };
-
 const showSearchDialog = () => {
   showDialog("SearchDialog");
 };
