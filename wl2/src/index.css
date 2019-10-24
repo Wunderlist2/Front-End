@@ -356,7 +356,7 @@ a {
   background: white;
   color: black;
   border: 1px solid black;
-  
+}
 input.apple-switch {
   position: relative;
   appearance: none;
@@ -364,7 +364,7 @@ input.apple-switch {
   width: 50px;
   height: 30px;
   background-color: #ffffff;
-  border: 1px solid #D9DADC;
+  border: 1px solid #d9dadc;
   border-radius: 50px;
   box-shadow: inset -20px 0 0 0 #ffffff;
   transition-duration: 200ms;
@@ -387,7 +387,6 @@ input.apple-switch:checked {
 input.apple-switch:checked:after {
   left: 20px;
   box-shadow: -2px 4px 3px rgba(0, 0, 0, 0.05);
-  
 }
 header {
   z-index: 10;
