@@ -5,24 +5,15 @@ import {
   Lists,
   CreateListDialog,
   Footer,
-  SearchDialog
+  SearchDialog,
+  SetReminderDialog,
+  Item,
+  ListItem
 } from "./";
 
 const Main = props => {
-  // const [user, setUser] = useState({
-  //   token: "",
-  //   userID: "",
-  //   message: ""
-  // });
   const [lists, setLists] = useState([]);
   const [scheduledItems, setScheduledItems] = useState([]);
-
-  // setUser({
-  //   ...user,
-  //   token: localStorage.getItem('token'),
-  //   userID: localStorage.getItem('userID'),
-  //   message: localStorage.getItem('message')
-  // });
 
   let user = {
     token: localStorage.getItem("token"),
@@ -59,28 +50,12 @@ const Main = props => {
         {user && lists && (
           <div className="hasData">
             {scheduledItems && <h2 className="subSectionTitle">Scheduled</h2>}
-            <p className="item">Lorem ipsum dolor sit amet.</p>
-            <p className="item">Earum velit aperiam dignissimos quis.</p>
-            <p className="item">Enim molestiae libero odit, illum.</p>
-            <p className="item">Lorem ipsum dolor.</p>
-            <p className="item">Sint, facilis, ex.</p>
-            <p className="item">A, reprehenderit, pariatur!</p>
-            <p className="item">Iusto, debitis, dolore.</p>
-            <p className="item">Est vitae, distinctio!</p>
+            {/* <p className="item">Lorem ipsum dolor sit amet.</p> */}
             {<h2 className="subSectionTitle">My Lists</h2>}
-            <p className="item">Lorem ipsum dolor.</p>
-            <p className="item">Sint, facilis, ex.</p>
-            <p className="item">A, reprehenderit, pariatur!</p>
-            <p className="item">Iusto, debitis, dolore.</p>
-            <p className="item">Est vitae, distinctio!</p>
-            <p className="item">Lorem ipsum dolor sit amet.</p>
-            <p className="item">Earum velit aperiam dignissimos quis.</p>
-            <p className="item">Enim molestiae libero odit, illum.</p>
-            <p className="item">Lorem ipsum dolor.</p>
-            <p className="item">Sint, facilis, ex.</p>
-            <p className="item">A, reprehenderit, pariatur!</p>
-            <p className="item">Iusto, debitis, dolore.</p>
-            <p className="item">Est vitae, distinctio!</p>
+            {lists.map(list => {
+              return <Item list={list} />;
+            })}
+            {/* <p className="item">Lorem ipsum dolor.</p> */}
           </div>
         )}
         <div>
@@ -89,9 +64,9 @@ const Main = props => {
             setLists={setLists}
             hideCreateListDialog={props.hideCreateListDialog}
           />
-          {lists.map(list => {
+          {/* {lists.map(list => {
             return <Lists key={list.id} list={list} deleteList={deleteList} />;
-          })}
+          })} */}
         </div>
       </section>
       <Footer
