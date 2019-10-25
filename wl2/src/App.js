@@ -11,13 +11,12 @@ import {
   Profile,
   Main,
   ListItem,
-  TaskItem
+  TaskItem,
+  IndividualList,
 } from "./Components";
 
 const showDialog = dialog => {
-  console.log("dialog: ", dialog);
   let d = document.querySelector(`.${dialog}`);
-  console.log("d: ", d);
   if (d) {
     d.classList.remove("hidden");
   } else {
@@ -25,9 +24,7 @@ const showDialog = dialog => {
   }
 };
 const hideDialog = dialog => {
-  console.log("dialog: ", dialog);
   let d = document.querySelector(`.${dialog}`);
-  console.log("d: ", d);
   if (d) {
     d.classList.add("hidden");
   } else {
@@ -41,7 +38,6 @@ const showCreateListDialog = () => {
 const hideCreateListDialog = () => {
   hideDialog("CreateListDialog");
 };
-
 const showSearchDialog = () => {
   showDialog("SearchDialog");
 };
@@ -62,12 +58,13 @@ function App() {
       <BrowserRouter basename="Front-End">
         <Route exact path="/" component={WelcomePage} />
 
-        <Route path="/register" component={Register} />
-        <Route path="/signin" component={Signin} />
-        <Route path="/forgot" component={ForgotPassword} />
-        <Route path="/signout" component={Signout} />
+        <Route exact path="/register" component={Register} />
+        <Route exact path="/signin" component={Signin} />
+        <Route exact path="/forgot" component={ForgotPassword} />
+        <Route exact path="/signout" component={Signout} />
 
         <PrivateRoute
+          exact
           path="/my"
           component={Main}
           showDialog={showDialog}
@@ -76,11 +73,9 @@ function App() {
           hideCreateListDialog={hideCreateListDialog}
         />
         <PrivateRoute path="/my/profile" component={Profile} />
-        <PrivateRoute path="/my/list/:listid" component={ListItem} />
-        <PrivateRoute
-          path="/my/list/:listid/task/:taskid"
-          component={TaskItem}
-        />
+        <PrivateRoute exact path="/my/list" component={ListItem} />
+        <PrivateRoute exact path="/my/list/task" component={TaskItem} />
+
       </BrowserRouter>
     </div>
   );

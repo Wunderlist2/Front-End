@@ -30,6 +30,4 @@ export { default as CreateButton } from "./Buttons/CreateButton";
 
 //Dialogs
 export { default as Dialog } from "./Dialogs/Dialog";
-export { default as CreateListDialog } from "./Dialogs/CreateListDialog";
-export { default as SearchDialog } from "./Dialogs/SearchDialog";
 export { default as SetReminderDialog } from "./Dialogs/SetReminderDialog";

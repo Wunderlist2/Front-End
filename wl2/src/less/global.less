@@ -48,13 +48,6 @@ body {
   }
 }
 
-.welcomepage-container {
-  // https://github.com/css-modules/postcss-icss-values/issues/64#issuecomment-241285628
-  margin-top: calc((@top-margin * 2.5) * -1);
-  @media @desktop4k {
-    margin-top: calc((@top-margin * 4) * -1);
-  }
-}
 .inner-container {
   height: 100vh;
 }
@@ -109,6 +102,10 @@ code {
   cursor: pointer;
 }
 
+.qpioW {
+  width: 100% !important;
+}
+
 .searchButton {
   font-size: 2.25rem;
   @media @desktop4k {
@@ -133,7 +130,7 @@ code {
   border-radius: 10px;
   background: black;
   height: 150px;
-  width: 30%;
+  width: 250px;
   position: fixed;
   left: 50%;
   top: 50%;
@@ -150,14 +147,75 @@ code {
       padding: 10px 20px;
       width: 60%;
       border: none;
+      margin-top: 30px;
       background: black;
       color: white;
       &:focus {
         outline: none;
       }
     }
+    .searchDialogButton {
+      background: black;
+      color: white;
+      border: 1px solid white;
+      border-radius: 4px;
+      width: 50%;
+      margin: 20px 0;
+      padding: 10px 20px;
+
+      &:hover {
+        opacity: 0.6;
+      }
+    }
   }
 }
+
+//reminder dialog styles
+.setReminderDialogContainer {
+  display: block;
+  color: white;
+  border-radius: 10px;
+  background: black;
+  height: 150px;
+  width: 250px;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+
+  .setReminderDialogForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    input {
+      border-radius: 8px;
+      padding: 10px 20px;
+      width: 60%;
+      border: none;
+      background: black;
+      color: white;
+      &:focus {
+        outline: none;
+      }
+    }
+    .setReminderDialogButton {
+      background: black;
+      color: white;
+      border: 1px solid white;
+      border-radius: 4px;
+      width: 50%;
+      margin-bottom: 20px;
+      padding: 10px 20px;
+
+      &:hover {
+        opacity: 0.6;
+      }
+    }
+  }
+}
+
 //register and signin styles
 .registerContainer {
   display: flex;
@@ -220,4 +278,162 @@ a {
 
 .termsOfServiceDiv {
   width: 380px;
+}
+
+//welcome page styles
+
+.welcomepage-container {
+  // https://github.com/css-modules/postcss-icss-values/issues/64#issuecomment-241285628
+  margin-top: calc((@top-margin * 2.5) * -1);
+  @media @desktop4k {
+    margin-top: calc((@top-margin * 4) * -1);
+  }
+}
+
+.welcomePageContainer {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  .textDiv {
+    text-align: left;
+  }
+  h1 {
+    text-align: center;
+    font-size: 5.5rem;
+  }
+  h2 {
+    text-align: center;
+    font-size: 3.5rem;
+    font-weight: lighter;
+    margin-top: -15px;
+  }
+  .blackButton {
+    font-size: 2rem;
+    font-weight: bold;
+    background: black;
+    color: white;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    padding: 15px 3px;
+    width: 400px;
+    border: 2px solid black;
+    cursor: pointer;
+
+    &:hover {
+      opacity: 0.7;
+    }
+  }
+  .whiteButton {
+    font-size: 2rem;
+    font-weight: bold;
+    background: white;
+    color: black;
+    border-radius: 8px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 15px 3px;
+    width: 400px;
+    border: 2px solid black;
+    cursor: pointer;
+
+    &:hover {
+      opacity: 0.7;
+    }
+  }
+}
+
+//ListItem.js styles
+.listsPageContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .listsContainer {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    width: 50%;
+    h3 {
+      margin-left: 5%;
+      text-align: left;
+    }
+  }
+  .taskContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    margin-left: 10%;
+  }
+  .taskPlusCheckbox {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    input {
+      margin-right: 20%;
+    }
+  }
+  .dateContainer {
+    display: flex;
+    justify-content: flex-start;
+    margin-top: -25px;
+  }
+  .buttonContainer {
+    display: flex;
+    flex-direction: flex-start;
+    margin-bottom: 20px;
+  }
+  .listsButton {
+    font-weight: bold;
+    background: black;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    margin-left: 10%;
+    padding: 5px 3px;
+    width: 100px;
+    &:hover {
+      background: white;
+      color: black;
+      border: 1px solid black;
+    }
+  }
+}
+// Profile styles
+input.apple-switch {
+  position: relative;
+  appearance: none;
+  outline: none;
+  width: 50px;
+  height: 30px;
+  background-color: #ffffff;
+  border: 1px solid #d9dadc;
+  border-radius: 50px;
+  box-shadow: inset -20px 0 0 0 #ffffff;
+  transition-duration: 200ms;
+}
+
+input.apple-switch:after {
+  content: "";
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  width: 26px;
+  height: 26px;
+  background-color: transparent;
+  border-radius: 50%;
+  box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+input.apple-switch:checked {
+  border-color: @secondary-blue;
+  box-shadow: inset 20px 0 0 0 @secondary-blue;
+}
+
+input.apple-switch:checked:after {
+  left: 20px;
+  box-shadow: -2px 4px 3px rgba(0, 0, 0, 0.05);
 }
