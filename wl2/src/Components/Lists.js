@@ -1,5 +1,6 @@
 import React from "react";
 import { axiosWithAuth } from '../axiosWithAuth';
+import { Link } from 'react-router-dom';
 import styled from "styled-components";
 
 const Card = styled.div`
@@ -81,20 +82,24 @@ const Lists = props => {
 
     return (
       <Card>
-        <H3>{props.list.title}</H3>
-        <TaskContainer>
-          <TaskPlusCheckbox>
-            <p>{props.list.task}</p>
-            <input type="radio" id="checkbox" name="checkbox" />
-          </TaskPlusCheckbox>
-          <DateContainer>
-            <p>{props.list.setDate}</p>
-          </DateContainer>
-        </TaskContainer>
-        <ButtonContainer>
-          <Button onClick={deleteList}>Delete</Button>
-          <Button onClick={editList}>Edit</Button>
-        </ButtonContainer>
+          <Link
+            to={`/my/list?id=${props.list.id}`}
+          >
+            <H3>{props.list.title}</H3>
+            <TaskContainer>
+              <TaskPlusCheckbox>
+                <p>{props.list.task}</p>
+                <input type="radio" id="checkbox" name="checkbox" />
+              </TaskPlusCheckbox>
+              <DateContainer>
+                <p>{props.list.setDate}</p>
+              </DateContainer>
+            </TaskContainer>
+          </Link>
+          <ButtonContainer>
+              <Button onClick={deleteList}>Delete</Button>
+              <Button onClick={editList}>Edit</Button>
+          </ButtonContainer>
       </Card>
     );
 
