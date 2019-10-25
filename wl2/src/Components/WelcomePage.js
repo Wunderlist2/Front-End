@@ -9,7 +9,7 @@ library.add(fab);
 
 const WelcomePage = props => {
   return (
-    <div className="welcomepage-container">
+    <div className="negative-top-margin-adjustment">
       <div className="welcomePageContainer">
         <div className="textDiv">
           <h1>Wunderlist 2.0</h1>
