@@ -38,6 +38,12 @@ const showCreateListDialog = () => {
 const hideCreateListDialog = () => {
   hideDialog("CreateListDialog");
 };
+const showCreateTaskDialog = () => {
+  showDialog("CreateTaskDialog");
+};
+const hideCreateTaskDialog = () => {
+  hideDialog("CreateTaskDialog");
+};
 const showSearchDialog = () => {
   showDialog("SearchDialog");
 };
@@ -73,7 +79,13 @@ function App() {
           hideCreateListDialog={hideCreateListDialog}
         />
         <PrivateRoute path="/my/profile" component={Profile} />
-        <PrivateRoute exact path="/my/list" component={ListItem} />
+        <PrivateRoute
+          exact
+          path="/my/list"
+          component={ListItem}
+          showCreateTaskDialog={showCreateTaskDialog}
+          hideCreateTaskDialog={hideCreateTaskDialog}
+        />
         <PrivateRoute exact path="/my/list/task" component={TaskItem} />
 
       </BrowserRouter>

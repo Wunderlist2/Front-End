@@ -2,6 +2,7 @@ import React from "react";
 import { axiosWithAuth } from '../axiosWithAuth';
 import { Link } from 'react-router-dom';
 import styled from "styled-components";
+import { CheckboxButton } from ".";
 
 const Card = styled.div`
   display: flex;
@@ -57,51 +58,51 @@ const Button = styled.button`
 
 const Lists = props => {
 
-    const deleteList = () => {
-        axiosWithAuth()
-            .delete(`/api/todos/${props.list.id}`)
-            .then(res => {
-                console.log('Delete Request: List: List: Result: ', res)
-            })
-            .catch(err => {
-                console.log('Delete Request: List: List: Error: ', err)
-            })
-    }
+  const deleteList = () => {
+    axiosWithAuth()
+      .delete(`/api/todos/${props.list.id}`)
+      .then(res => {
+        console.log('Delete Request: List: List: Result: ', res)
+      })
+      .catch(err => {
+        console.log('Delete Request: List: List: Error: ', err)
+      })
+  }
 
-    const editList = () => {
-        props.showModal()
-        // axiosWithAuth()
-        //     .put(`/api/todos/${props.list.id}`)
-        //     .then(res => {
-        //         console.log('Put Request: List: List: Result: ', res)
-        //     })
-        //     .catch(err => {
-        //         console.log('Put Request: List: List: Error: ', err)
-        //     })
-    }
+  const editList = () => {
+    props.showModal()
+    // axiosWithAuth()
+    //     .put(`/api/todos/${props.list.id}`)
+    //     .then(res => {
+    //         console.log('Put Request: List: List: Result: ', res)
+    //     })
+    //     .catch(err => {
+    //         console.log('Put Request: List: List: Error: ', err)
+    //     })
+  }
 
-    return (
-      <Card>
-          <Link
-            to={`/my/list?id=${props.list.id}`}
-          >
-            <H3>{props.list.title}</H3>
-            <TaskContainer>
-              <TaskPlusCheckbox>
-                <p>{props.list.task}</p>
-                <input type="radio" id="checkbox" name="checkbox" />
-              </TaskPlusCheckbox>
-              <DateContainer>
-                <p>{props.list.setDate}</p>
-              </DateContainer>
-            </TaskContainer>
-          </Link>
-          <ButtonContainer>
-              <Button onClick={deleteList}>Delete</Button>
-              <Button onClick={editList}>Edit</Button>
-          </ButtonContainer>
-      </Card>
-    );
+  return (
+    <Card>
+      <Link
+        to={`/my/list?id=${props.list.id}`}
+      >
+        <H3>{props.list.title}</H3>
+        <TaskContainer>
+          <TaskPlusCheckbox>
+            <p>{props.list.task}</p>
+            <CheckboxButton />
+          </TaskPlusCheckbox>
+          <DateContainer>
+            <p>{props.list.setDate}</p>
+          </DateContainer>
+        </TaskContainer>
+      </Link>
+      <ButtonContainer>
+        <Button onClick={deleteList}>Delete</Button>
+        <Button onClick={editList}>Edit</Button>
+      </ButtonContainer>
+    </Card>
+  );
 
 };
 

@@ -38,7 +38,7 @@ export default function Register(props) {
     );
   } else {
     return (
-      <div className="registerContainer">
+      <div className="registerContainer negative-top-margin-adjustment">
         <div>
           <div>
             <h1>Register</h1>
