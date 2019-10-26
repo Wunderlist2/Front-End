@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
-import {axiosWithAuth} from "../../axiosWithAuth";
+import { axiosWithAuth } from "../../axiosWithAuth";
 import styled from "styled-components";
 
 const Card = styled.div`
@@ -57,68 +57,68 @@ const Button = styled.button`
 
 const ListItem = props => {
 
-    const urlParams = new URLSearchParams(window.location.search)
-    const [ID] = useState(urlParams.get('id'));
-    const [list, setList] = useState({});
+  const urlParams = new URLSearchParams(window.location.search)
+  const [ID] = useState(urlParams.get('id'));
+  const [list, setList] = useState({});
 
-    useEffect(() => {
-        axiosWithAuth()
-            .get(`/api/todos/${ID}`)
-            .then(res => {
-                setList(res.data)
-                console.log('Get Request: ListItem.js: Result: ', res)
-            })
-            .catch(err => {
-                console.log('Get Request: ListItem.js: Error: ', err)
-            })
-    }, [])
+  useEffect(() => {
+    axiosWithAuth()
+      .get(`/api/todos/${ID}`)
+      .then(res => {
+        setList(res.data)
+        console.log('Get Request: ListItem.js: Result: ', res)
+      })
+      .catch(err => {
+        console.log('Get Request: ListItem.js: Error: ', err)
+      })
+  }, [])
 
-    const deleteList = () => {
-        axiosWithAuth()
-            .delete(`/api/todos/${props.list.id}`)
-            .then(res => {
-                console.log('Delete Request: ListItem.js: Result: ', res)
-            })
-            .catch(err => {
-                console.log('Delete Request: ListItem.js: Error: ', err)
-            })
-    }
+  const deleteList = () => {
+    axiosWithAuth()
+      .delete(`/api/todos/${props.list.id}`)
+      .then(res => {
+        console.log('Delete Request: ListItem.js: Result: ', res)
+      })
+      .catch(err => {
+        console.log('Delete Request: ListItem.js: Error: ', err)
+      })
+  }
 
-    const editList = () => {
-        props.showModal()
-        // axiosWithAuth()
-        //     .put(`/api/todos/${props.list.id}`)
-        //     .then(res => {
-        //         console.log('Put Request: List: List: Result: ', res)
-        //     })
-        //     .catch(err => {
-        //         console.log('Put Request: List: List: Error: ', err)
-        //     })
-    }
+  const editList = () => {
+    props.showModal()
+    // axiosWithAuth()
+    //     .put(`/api/todos/${props.list.id}`)
+    //     .then(res => {
+    //         console.log('Put Request: List: List: Result: ', res)
+    //     })
+    //     .catch(err => {
+    //         console.log('Put Request: List: List: Error: ', err)
+    //     })
+  }
 
-    return (
-        <div>
-            <Link to={`/my`} style={{ position: 'fixed', top: '16px', left: '16px', }}>
-                <div>Go Back</div>
-            </Link>
-            <Card>
-                <H3>{list.title}</H3>
-                <TaskContainer>
-                    <TaskPlusCheckbox>
-                        <p>{list.task}</p>
-                        <input type="radio" id="checkbox" name="checkbox" />
-                    </TaskPlusCheckbox>
-                    <DateContainer>
-                        <p>{list.setDate}</p>
-                    </DateContainer>
-                </TaskContainer>
-                <ButtonContainer>
-                    <Button onClick={deleteList}>Delete</Button>
-                    <Button onClick={editList}>Edit</Button>
-                </ButtonContainer>
-            </Card>
-        </div>
-    );
+  return (
+    <div>
+      <Link to={`/my`} style={{ position: 'fixed', top: '16px', left: '16px', }}>
+        <div>Go Back</div>
+      </Link>
+      <Card>
+        <H3>{list.title}</H3>
+        <TaskContainer>
+          <TaskPlusCheckbox>
+            <p>{list.task}</p>
+            <input type="radio" id="checkbox" name="checkbox" />
+          </TaskPlusCheckbox>
+          <DateContainer>
+            <p>{list.setDate}</p>
+          </DateContainer>
+        </TaskContainer>
+        <ButtonContainer>
+          <Button onClick={deleteList}>Delete</Button>
+          <Button onClick={editList}>Edit</Button>
+        </ButtonContainer>
+      </Card>
+    </div>
+  );
 }
 
 export default ListItem;

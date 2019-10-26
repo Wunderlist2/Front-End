@@ -42,7 +42,7 @@ const Main = props => {
   const [showSearchDialog, setShowSearchDialog] = useState(false);
 
   const toggleSearchDialog = () => {
-      setShowSearchDialog(!showSearchDialog);
+    setShowSearchDialog(!showSearchDialog);
   };
 
   const editList = () => {
@@ -57,125 +57,125 @@ const Main = props => {
   const handleSearchSubmit = e => {
     e.preventDefault();
     return (
-        lists.filter(task => {
-            task.title.includes(search)
-            console.log(task)
-        })
+      lists.filter(task => {
+        task.title.includes(search)
+        console.log(task)
+      })
     );
   };
 
   const handleCreateChange = e => {
-      setList({ ...list, [e.target.name]: e.target.value });
+    setList({ ...list, [e.target.name]: e.target.value });
   };
 
   const handleCreateSubmit = e => {
-      e.preventDefault();
-      axiosWithAuth()
-          .post('/api/todos/', list)
-          .then(res => {
-              lists.push(res.data)
-              props.hideCreateListDialog();
-          })
-          .catch(err => console.log('Post Request: CreateListDialog: Error: ', err))
+    e.preventDefault();
+    axiosWithAuth()
+      .post('/api/todos/', list)
+      .then(res => {
+        lists.push(res.data)
+        props.hideCreateListDialog();
+      })
+      .catch(err => console.log('Post Request: CreateListDialog: Error: ', err))
 
   };
 
   useEffect(() => {
-      axiosWithAuth()
-          .get(`/api/users/${localStorage.getItem('userID')}`)
-          .then(res => {
-              setUser(res.data)
-          })
-          .catch(err => {
-              console.log('Get Request: Main: User Data: Error: ', err)
-          })
+    axiosWithAuth()
+      .get(`/api/users/${localStorage.getItem('userID')}`)
+      .then(res => {
+        setUser(res.data)
+      })
+      .catch(err => {
+        console.log('Get Request: Main: User Data: Error: ', err)
+      })
 
-      axiosWithAuth()
-          .get(`/api/todos/`)
-          .then(res => {
-              setLists(res.data.reverse())
-          })
-          .catch(err => {
-              console.log('Get Request: Main: Todo List: Error: ', err)
-          })
+    axiosWithAuth()
+      .get(`/api/todos/`)
+      .then(res => {
+        setLists(res.data.reverse())
+      })
+      .catch(err => {
+        console.log('Get Request: Main: Todo List: Error: ', err)
+      })
   }, [])
 
   return (
-      <UserContext.Provider user={user}>
-          <Header {...props} message={``} />
-          <section className="mainContent">
-            {(!user || (user && !lists)) && (
-              <div className="noData">
-                <h2>Welcome to Wunderlist!</h2>
-                <h3>Click the + button below to add your first list.</h3>
-              </div>
-            )}
-            {user && lists && (
-              <div className="hasData">
-                {scheduledItems && <h2 className="subSectionTitle">Scheduled</h2>}
-              </div>
-            )}
-            <div>
-            <MaskDiv
-                className="Dialog CreateListDialog hidden"
-            >
-                <FormContainerDiv className="form-container">
-                    <span
-                        className="button close-dialog"
-                        onClick={() => props.hideCreateListDialog()}
-                    >
-                      X
+    <UserContext.Provider user={user}>
+      <Header {...props} message={``} />
+      <section className="mainContent">
+        {(!user || (user && !lists)) && (
+          <div className="noData">
+            <h2>Welcome to Wunderlist!</h2>
+            <h3>Click the + button below to add your first list.</h3>
+          </div>
+        )}
+        {user && lists && (
+          <div className="hasData">
+            {scheduledItems && <h2 className="subSectionTitle">Scheduled</h2>}
+          </div>
+        )}
+        <div>
+          <MaskDiv
+            className="Dialog CreateListDialog hidden"
+          >
+            <FormContainerDiv className="form-container">
+              <span
+                className="button close-dialog"
+                onClick={() => props.hideCreateListDialog()}
+              >
+                X
                     </span>
-                    <form className="main-form" onSubmit={handleCreateSubmit}>
-                        {/* <label htmlFor="title">Title</label> */}
-                        <input
-                            type="text"
-                            id="form-input"
-                            name="title"
-                            placeholder="type to name your list"
-                            value={list.title}
-                            onChange={handleCreateChange}
-                        />
-                        {/* <label htmlFor="task">Task</label> */}
-                        <input
-                            type="text"
-                            id="form-input"
-                            name="task"
-                            placeholder="task"
-                            value={list.task}
-                            onChange={handleCreateChange}
-                        />
-                        {/* <label htmlFor="setDate">Due Date</label> */}
-                        <input
-                            type="date"
-                            id="form-input"
-                            name="setDate"
-                            value={list.setDate}
-                            onChange={handleCreateChange}
-                        />
-                        <button className="form-button" type="submit">
-                            Add new list +
+              <form className="main-form" onSubmit={handleCreateSubmit}>
+                {/* <label htmlFor="title">Title</label> */}
+                <input
+                  type="text"
+                  id="form-input"
+                  name="title"
+                  placeholder="type to name your list"
+                  value={list.title}
+                  onChange={handleCreateChange}
+                />
+                {/* <label htmlFor="task">Task</label> */}
+                <input
+                  type="text"
+                  id="form-input"
+                  name="task"
+                  placeholder="task"
+                  value={list.task}
+                  onChange={handleCreateChange}
+                />
+                {/* <label htmlFor="setDate">Due Date</label> */}
+                <input
+                  type="date"
+                  id="form-input"
+                  name="setDate"
+                  value={list.setDate}
+                  onChange={handleCreateChange}
+                />
+                <button className="form-button" type="submit">
+                  Add new list +
                         </button>
-                    </form>
-                </FormContainerDiv>
-            </MaskDiv>
-              {lists.map(list => {
-                return <Lists key={list.id} list={list} showModal={props.showCreateListDialog} />;
-              })}
-            </div>
-          </section>
-          <footer>
-              <div className="footerItems">
-                  <div onClick={toggleSearchDialog}>
-                      <FontAwesomeIcon icon={faSearch} className="button searchButton" />
-                      {showSearchDialog && <SearchDialog />}
-                  </div>
-                  <div onClick={props.showCreateListDialog}>
-                      <FontAwesomeIcon icon={faPlus} className="button createButton" />
-                  </div>
-              </div>
-          </footer>
-      </UserContext.Provider>
+              </form>
+            </FormContainerDiv>
+          </MaskDiv>
+          {lists.map(list => {
+            return <Lists key={list.id} list={list} showModal={props.showCreateListDialog} />;
+          })}
+        </div>
+      </section>
+      <footer>
+        <div className="footerItems">
+          <div onClick={toggleSearchDialog}>
+            <FontAwesomeIcon icon={faSearch} className="button searchButton" />
+            {showSearchDialog && <SearchDialog />}
+          </div>
+          <div onClick={props.showCreateListDialog}>
+            <FontAwesomeIcon icon={faPlus} className="button createButton" />
+          </div>
+        </div>
+      </footer>
+    </UserContext.Provider>
   );
 
 };
