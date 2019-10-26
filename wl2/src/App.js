@@ -20,6 +20,7 @@ function App() {
 
         <PrivateRoute exact path="/my" component={MainPage} />
         <PrivateRoute path="/my/profile" component={Profile} />
+
         <PrivateRoute path="/my/list" component={ListItem} />
       </BrowserRouter>
     </div>

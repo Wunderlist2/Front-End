@@ -39,14 +39,6 @@ body {
     background-repeat: repeat-y, repeat-y, repeat-y;
   }
 }
-.welcomepage-container {
-  margin-top: calc((50px * 2.5) * -1);
-}
-@media (min-width: 2000px) {
-  .welcomepage-container {
-    margin-top: calc((50px * 4) * -1);
-  }
-}
 .inner-container {
   height: 100vh;
 }
@@ -93,6 +85,9 @@ code {
 .button {
   cursor: pointer;
 }
+.qpioW {
+  width: 100% !important;
+}
 .searchButton {
   font-size: 2.25rem;
 }
@@ -119,7 +114,7 @@ code {
   border-radius: 10px;
   background: black;
   height: 150px;
-  width: 30%;
+  width: 250px;
   position: fixed;
   left: 50%;
   top: 50%;
@@ -136,11 +131,65 @@ code {
   padding: 10px 20px;
   width: 60%;
   border: none;
+  margin-top: 30px;
   background: black;
   color: white;
 }
 .search-dialog-container .search-dialog-form input:focus {
   outline: none;
+}
+.search-dialog-container .search-dialog-form .searchDialogButton {
+  background: black;
+  color: white;
+  border: 1px solid white;
+  border-radius: 4px;
+  width: 50%;
+  margin: 20px 0;
+  padding: 10px 20px;
+}
+.search-dialog-container .search-dialog-form .searchDialogButton:hover {
+  opacity: 0.6;
+}
+.setReminderDialogContainer {
+  display: block;
+  color: white;
+  border-radius: 10px;
+  background: black;
+  height: 150px;
+  width: 250px;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+.setReminderDialogContainer .setReminderDialogForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.setReminderDialogContainer .setReminderDialogForm input {
+  border-radius: 8px;
+  padding: 10px 20px;
+  width: 60%;
+  border: none;
+  background: black;
+  color: white;
+}
+.setReminderDialogContainer .setReminderDialogForm input:focus {
+  outline: none;
+}
+.setReminderDialogContainer .setReminderDialogForm .setReminderDialogButton {
+  background: black;
+  color: white;
+  border: 1px solid white;
+  border-radius: 4px;
+  width: 50%;
+  margin-bottom: 20px;
+  padding: 10px 20px;
+}
+.setReminderDialogContainer .setReminderDialogForm .setReminderDialogButton:hover {
+  opacity: 0.6;
 }
 .registerContainer {
   display: flex;
@@ -197,6 +246,120 @@ a {
 .termsOfServiceDiv {
   width: 380px;
 }
+.negative-top-margin-adjustment {
+  margin-top: calc((50px * 2.5) * -1);
+}
+@media (min-width: 2000px) {
+  .negative-top-margin-adjustment {
+    margin-top: calc((50px * 4) * -1);
+  }
+}
+.welcomePageContainer {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.welcomePageContainer .textDiv {
+  text-align: left;
+}
+.welcomePageContainer h1 {
+  text-align: center;
+  font-size: 5.5rem;
+}
+.welcomePageContainer h2 {
+  text-align: center;
+  font-size: 3.5rem;
+  font-weight: lighter;
+  margin-top: -15px;
+}
+.welcomePageContainer .blackButton {
+  font-size: 2rem;
+  font-weight: bold;
+  background: black;
+  color: white;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  padding: 15px 3px;
+  width: 400px;
+  border: 2px solid black;
+  cursor: pointer;
+}
+.welcomePageContainer .blackButton:hover {
+  opacity: 0.7;
+}
+.welcomePageContainer .whiteButton {
+  font-size: 2rem;
+  font-weight: bold;
+  background: white;
+  color: black;
+  border-radius: 8px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 15px 3px;
+  width: 400px;
+  border: 2px solid black;
+  cursor: pointer;
+}
+.welcomePageContainer .whiteButton:hover {
+  opacity: 0.7;
+}
+.listsPageContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.listsPageContainer .listsContainer {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  width: 50%;
+}
+.listsPageContainer .listsContainer h3 {
+  margin-left: 5%;
+  text-align: left;
+}
+.listsPageContainer .taskContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  margin-left: 10%;
+}
+.listsPageContainer .taskPlusCheckbox {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.listsPageContainer .taskPlusCheckbox input {
+  margin-right: 20%;
+}
+.listsPageContainer .dateContainer {
+  display: flex;
+  justify-content: flex-start;
+  margin-top: -25px;
+}
+.listsPageContainer .buttonContainer {
+  display: flex;
+  flex-direction: flex-start;
+  margin-bottom: 20px;
+}
+.listsPageContainer .listsButton {
+  font-weight: bold;
+  background: black;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  margin-left: 10%;
+  padding: 5px 3px;
+  width: 100px;
+}
+.listsPageContainer .listsButton:hover {
+  background: white;
+  color: black;
+  border: 1px solid black;
+}
 input.apple-switch {
   position: relative;
   appearance: none;
@@ -204,7 +367,7 @@ input.apple-switch {
   width: 50px;
   height: 30px;
   background-color: #ffffff;
-  border: 1px solid #D9DADC;
+  border: 1px solid #d9dadc;
   border-radius: 50px;
   box-shadow: inset -20px 0 0 0 #ffffff;
   transition-duration: 200ms;

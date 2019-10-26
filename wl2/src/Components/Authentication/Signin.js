@@ -41,7 +41,7 @@ export default function Signin(props) {
     );
   } else {
     return (
-      <div className="signinContainer">
+      <div className="signinContainer negative-top-margin-adjustment">
         <div>
           <div>
             <h1>Sign in</h1>
