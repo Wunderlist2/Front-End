@@ -48,6 +48,62 @@ code {
 .hidden {
   display: none;
 }
+.centeredModal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.54);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.centeredModal .modalDiv {
+  background-color: #000000;
+  padding: 32px;
+  margin: 16px;
+  border-radius: 10px;
+  color: white;
+  max-width: 600px;
+}
+.centeredModal .modalDiv .modalInput {
+  border: none;
+  background-color: #000000;
+  font-weight: 600;
+  font-size: 32px;
+  color: white;
+  margin-bottom: 32px;
+  outline: none;
+}
+.centeredModal .modalButtonDiv {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+.centeredModal .modalButtonDiv .cancelNewListButton {
+  border: none !important;
+  background-color: #000000 !important;
+  color: white !important;
+  font-size: 16px !important;
+  font-weight: 600;
+  margin-right: 16px;
+  padding: 12px 16px;
+  outline: none;
+  cursor: pointer;
+  border-radius: 10px;
+}
+.centeredModal .modalButtonDiv .createNewListButton {
+  background-color: #fce959 !important;
+  color: #1c1c1c !important;
+  border: none !important;
+  font-size: 16px !important;
+  font-weight: 600;
+  padding: 12px 16px;
+  outline: none;
+  cursor: pointer;
+  border-radius: 10px;
+}
 .form-container {
   margin: calc(50vh - 25vh) auto;
 }
@@ -84,6 +140,9 @@ code {
 }
 .button {
   cursor: pointer;
+}
+.faIcon {
+  font-size: 24px;
 }
 .qpioW {
   width: 100% !important;
@@ -306,59 +365,228 @@ a {
 .welcomePageContainer .whiteButton:hover {
   opacity: 0.7;
 }
-.listsPageContainer {
+.welcomepage-socialmedia-container {
   display: flex;
-  align-items: center;
   justify-content: center;
+  margin: 0 auto;
+  font-size: 2.125rem;
 }
-.listsPageContainer .listsContainer {
+header {
   display: flex;
-  justify-content: flex-start;
-  flex-direction: column;
-  width: 50%;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 10;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 50px;
+  padding: 20px;
+  padding-top: 5px;
+  background: linear-gradient(to top, #FFFFFF00, #FFFFFFCC 20%, #FFFFFFFF);
 }
-.listsPageContainer .listsContainer h3 {
-  margin-left: 5%;
+@media (min-width: 2000px) {
+  header {
+    height: calc(50px * 2.25);
+    padding-top: 0;
+  }
+}
+header .headerCtn {
+  width: 90%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+header .title {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: flex-end;
+  justify-content: space-around;
+  align-content: flex-end;
+  justify-content: space-between;
+  align-items: center !important;
+  width: 100%;
+}
+header .title .titleMessage {
+  margin: auto 0;
+  padding-bottom: 0 !important;
+  text-align: left;
+  font-weight: bold;
+  font-size: 2.25rem;
+}
+@media (min-width: 2000px) {
+  header .title .titleMessage {
+    font-size: 2rem;
+  }
+}
+header .title .userPhoto {
+  margin-top: 0;
+  margin-right: 35px;
+}
+header .title .userPhoto img {
+  border-radius: 50%;
+  object-fit: cover;
+  width: 50px;
+  height: 50px;
+}
+@media (min-width: 2000px) {
+  header .title .userPhoto img {
+    width: 100px;
+    height: 100px;
+  }
+}
+.forgotPassword {
+  text-align: right;
+  font-size: 1.5rem;
+}
+.mainContent {
+  width: 80%;
+  margin: 0 auto;
+}
+.noData {
+  width: 90%;
+  margin: 0 auto 112px;
+}
+.noData .welcomeDiv {
+  font-size: 32px;
+  font-weight: 600;
+  margin-bottom: 32px;
   text-align: left;
 }
-.listsPageContainer .taskContainer {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  margin-left: 10%;
+.noData .hintDiv {
+  font-size: 24px;
+  font-weight: 400;
+  color: #757575;
+  text-align: left;
 }
-.listsPageContainer .taskPlusCheckbox {
+.lists,
+.tasks {
+  margin: 0 32px;
+}
+.lists .myLists,
+.tasks .myLists,
+.lists .myTasks,
+.tasks .myTasks {
+  font-size: 32px;
+  font-weight: 600;
+  margin-bottom: 32px;
+  text-align: left;
+}
+.lists .listEntryContainer,
+.tasks .listEntryContainer,
+.lists .taskEntryContainer,
+.tasks .taskEntryContainer {
+  width: 50%;
+  margin: 0 64px 32px;
+}
+.lists .listEntryContainer .listEntryWithArrow,
+.tasks .listEntryContainer .listEntryWithArrow,
+.lists .taskEntryContainer .listEntryWithArrow,
+.tasks .taskEntryContainer .listEntryWithArrow,
+.lists .listEntryContainer .taskEntryWithArrow,
+.tasks .listEntryContainer .taskEntryWithArrow,
+.lists .taskEntryContainer .taskEntryWithArrow,
+.tasks .taskEntryContainer .taskEntryWithArrow {
   display: flex;
+  flex-direction: row;
   align-items: center;
   justify-content: space-between;
 }
-.listsPageContainer .taskPlusCheckbox input {
-  margin-right: 20%;
+.lists .listEntryContainer .listEntryWithArrow .listEntry,
+.tasks .listEntryContainer .listEntryWithArrow .listEntry,
+.lists .taskEntryContainer .listEntryWithArrow .listEntry,
+.tasks .taskEntryContainer .listEntryWithArrow .listEntry,
+.lists .listEntryContainer .taskEntryWithArrow .listEntry,
+.tasks .listEntryContainer .taskEntryWithArrow .listEntry,
+.lists .taskEntryContainer .taskEntryWithArrow .listEntry,
+.tasks .taskEntryContainer .taskEntryWithArrow .listEntry,
+.lists .listEntryContainer .listEntryWithArrow .taskEntry,
+.tasks .listEntryContainer .listEntryWithArrow .taskEntry,
+.lists .taskEntryContainer .listEntryWithArrow .taskEntry,
+.tasks .taskEntryContainer .listEntryWithArrow .taskEntry,
+.lists .listEntryContainer .taskEntryWithArrow .taskEntry,
+.tasks .listEntryContainer .taskEntryWithArrow .taskEntry,
+.lists .taskEntryContainer .taskEntryWithArrow .taskEntry,
+.tasks .taskEntryContainer .taskEntryWithArrow .taskEntry {
+  display: block;
+  margin-right: 16px;
+  text-align: left;
 }
-.listsPageContainer .dateContainer {
-  display: flex;
-  justify-content: flex-start;
-  margin-top: -25px;
+.lists .listEntryContainer .listEntryWithArrow .listEntry .listEntryTitle,
+.tasks .listEntryContainer .listEntryWithArrow .listEntry .listEntryTitle,
+.lists .taskEntryContainer .listEntryWithArrow .listEntry .listEntryTitle,
+.tasks .taskEntryContainer .listEntryWithArrow .listEntry .listEntryTitle,
+.lists .listEntryContainer .taskEntryWithArrow .listEntry .listEntryTitle,
+.tasks .listEntryContainer .taskEntryWithArrow .listEntry .listEntryTitle,
+.lists .taskEntryContainer .taskEntryWithArrow .listEntry .listEntryTitle,
+.tasks .taskEntryContainer .taskEntryWithArrow .listEntry .listEntryTitle,
+.lists .listEntryContainer .listEntryWithArrow .taskEntry .listEntryTitle,
+.tasks .listEntryContainer .listEntryWithArrow .taskEntry .listEntryTitle,
+.lists .taskEntryContainer .listEntryWithArrow .taskEntry .listEntryTitle,
+.tasks .taskEntryContainer .listEntryWithArrow .taskEntry .listEntryTitle,
+.lists .listEntryContainer .taskEntryWithArrow .taskEntry .listEntryTitle,
+.tasks .listEntryContainer .taskEntryWithArrow .taskEntry .listEntryTitle,
+.lists .taskEntryContainer .taskEntryWithArrow .taskEntry .listEntryTitle,
+.tasks .taskEntryContainer .taskEntryWithArrow .taskEntry .listEntryTitle,
+.lists .listEntryContainer .listEntryWithArrow .listEntry .taskEntryTitle,
+.tasks .listEntryContainer .listEntryWithArrow .listEntry .taskEntryTitle,
+.lists .taskEntryContainer .listEntryWithArrow .listEntry .taskEntryTitle,
+.tasks .taskEntryContainer .listEntryWithArrow .listEntry .taskEntryTitle,
+.lists .listEntryContainer .taskEntryWithArrow .listEntry .taskEntryTitle,
+.tasks .listEntryContainer .taskEntryWithArrow .listEntry .taskEntryTitle,
+.lists .taskEntryContainer .taskEntryWithArrow .listEntry .taskEntryTitle,
+.tasks .taskEntryContainer .taskEntryWithArrow .listEntry .taskEntryTitle,
+.lists .listEntryContainer .listEntryWithArrow .taskEntry .taskEntryTitle,
+.tasks .listEntryContainer .listEntryWithArrow .taskEntry .taskEntryTitle,
+.lists .taskEntryContainer .listEntryWithArrow .taskEntry .taskEntryTitle,
+.tasks .taskEntryContainer .listEntryWithArrow .taskEntry .taskEntryTitle,
+.lists .listEntryContainer .taskEntryWithArrow .taskEntry .taskEntryTitle,
+.tasks .listEntryContainer .taskEntryWithArrow .taskEntry .taskEntryTitle,
+.lists .taskEntryContainer .taskEntryWithArrow .taskEntry .taskEntryTitle,
+.tasks .taskEntryContainer .taskEntryWithArrow .taskEntry .taskEntryTitle {
+  margin-bottom: 8px;
+  font-size: 24px;
+  font-weight: 600;
 }
-.listsPageContainer .buttonContainer {
-  display: flex;
-  flex-direction: flex-start;
-  margin-bottom: 20px;
-}
-.listsPageContainer .listsButton {
-  font-weight: bold;
-  background: black;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  margin-left: 10%;
-  padding: 5px 3px;
-  width: 100px;
-}
-.listsPageContainer .listsButton:hover {
-  background: white;
-  color: black;
-  border: 1px solid black;
+.lists .listEntryContainer .listEntryWithArrow .listEntry .listEntryCount,
+.tasks .listEntryContainer .listEntryWithArrow .listEntry .listEntryCount,
+.lists .taskEntryContainer .listEntryWithArrow .listEntry .listEntryCount,
+.tasks .taskEntryContainer .listEntryWithArrow .listEntry .listEntryCount,
+.lists .listEntryContainer .taskEntryWithArrow .listEntry .listEntryCount,
+.tasks .listEntryContainer .taskEntryWithArrow .listEntry .listEntryCount,
+.lists .taskEntryContainer .taskEntryWithArrow .listEntry .listEntryCount,
+.tasks .taskEntryContainer .taskEntryWithArrow .listEntry .listEntryCount,
+.lists .listEntryContainer .listEntryWithArrow .taskEntry .listEntryCount,
+.tasks .listEntryContainer .listEntryWithArrow .taskEntry .listEntryCount,
+.lists .taskEntryContainer .listEntryWithArrow .taskEntry .listEntryCount,
+.tasks .taskEntryContainer .listEntryWithArrow .taskEntry .listEntryCount,
+.lists .listEntryContainer .taskEntryWithArrow .taskEntry .listEntryCount,
+.tasks .listEntryContainer .taskEntryWithArrow .taskEntry .listEntryCount,
+.lists .taskEntryContainer .taskEntryWithArrow .taskEntry .listEntryCount,
+.tasks .taskEntryContainer .taskEntryWithArrow .taskEntry .listEntryCount,
+.lists .listEntryContainer .listEntryWithArrow .listEntry .taskEntryDate,
+.tasks .listEntryContainer .listEntryWithArrow .listEntry .taskEntryDate,
+.lists .taskEntryContainer .listEntryWithArrow .listEntry .taskEntryDate,
+.tasks .taskEntryContainer .listEntryWithArrow .listEntry .taskEntryDate,
+.lists .listEntryContainer .taskEntryWithArrow .listEntry .taskEntryDate,
+.tasks .listEntryContainer .taskEntryWithArrow .listEntry .taskEntryDate,
+.lists .taskEntryContainer .taskEntryWithArrow .listEntry .taskEntryDate,
+.tasks .taskEntryContainer .taskEntryWithArrow .listEntry .taskEntryDate,
+.lists .listEntryContainer .listEntryWithArrow .taskEntry .taskEntryDate,
+.tasks .listEntryContainer .listEntryWithArrow .taskEntry .taskEntryDate,
+.lists .taskEntryContainer .listEntryWithArrow .taskEntry .taskEntryDate,
+.tasks .taskEntryContainer .listEntryWithArrow .taskEntry .taskEntryDate,
+.lists .listEntryContainer .taskEntryWithArrow .taskEntry .taskEntryDate,
+.tasks .listEntryContainer .taskEntryWithArrow .taskEntry .taskEntryDate,
+.lists .taskEntryContainer .taskEntryWithArrow .taskEntry .taskEntryDate,
+.tasks .taskEntryContainer .taskEntryWithArrow .taskEntry .taskEntryDate {
+  font-size: 16px;
+  font-weight: 400;
+  color: #757575;
 }
 input.apple-switch {
   position: relative;
@@ -391,82 +619,29 @@ input.apple-switch:checked:after {
   left: 20px;
   box-shadow: -2px 4px 3px rgba(0, 0, 0, 0.05);
 }
-header {
-  z-index: 10;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 50px;
-  padding: 20px;
-  padding-top: 5px;
-  background: linear-gradient(to top, #FFFFFF00, #FFFFFFCC 20%, #FFFFFFFF);
+.listItemHeader {
+  padding: 0 !important;
+  padding-top: 8px !important;
+  padding-bottom: 16px !important;
 }
-@media (min-width: 2000px) {
-  header {
-    height: calc(50px * 2.25);
-    padding-top: 0;
-  }
-}
-header .title {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  align-items: flex-end;
-  justify-content: space-around;
-  align-content: flex-end;
-  justify-content: space-between;
-  width: 100%;
-}
-header .title .titleMessage {
-  margin: auto 0;
-  padding-bottom: 10px;
+.taskTitleInput {
+  border: none;
+  background-color: #000000;
+  font-weight: 600;
+  font-size: 32px;
+  color: black;
+  outline: none;
+  margin-bottom: 56px;
   text-align: left;
-  font-weight: bold;
-  font-size: 2.25rem;
+  background-color: rgba(0, 0, 0, 0);
 }
-@media (min-width: 2000px) {
-  header .title .titleMessage {
-    font-size: 2rem;
-  }
-}
-header .title .userPhoto {
-  margin-top: 0;
-  margin-right: 35px;
-}
-header .title .userPhoto img {
-  border-radius: 50%;
-  object-fit: cover;
-  width: 50px;
-  height: 50px;
-}
-@media (min-width: 2000px) {
-  header .title .userPhoto img {
-    width: 100px;
-    height: 100px;
-  }
-}
-.mainContent {
-  width: 80%;
-  margin: 0 auto;
-}
-.subSectionTitle {
-  text-align: left;
+.taskTitleInput::placeholder {
+  color: black;
 }
 .item {
   text-align: left;
   margin-left: 50px;
   font-weight: bold;
-}
-.welcomepage-socialmedia-container {
-  display: flex;
-  justify-content: center;
-  margin: 0 auto;
-  font-size: 2.125rem;
-}
-.forgotPassword {
-  text-align: right;
-  font-size: 1.5rem;
 }
 footer {
   z-index: 10;
@@ -482,6 +657,11 @@ footer {
     height: calc(75px * 2);
   }
 }
+.footerListItem {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .footerItems {
   width: 90%;
   display: flex;
@@ -492,6 +672,7 @@ footer {
   align-content: flex-end;
   justify-content: space-between;
   margin: 0 auto;
+  align-items: center !important;
 }
 .copyright {
   margin: 0 auto;

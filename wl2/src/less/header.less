@@ -1,4 +1,8 @@
 header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
   z-index: 10;
   position: fixed;
   top: 0;
@@ -13,13 +17,26 @@ header {
   }
   background: linear-gradient(to top, #FFFFFF00, #FFFFFFCC 20%, #FFFFFFFF);
   // background-color: #11111111;  //Debug
+
+  .headerCtn {
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
   .title {
     .flexNav();
     .flex.justify-content.space-between();
+    align-items: center !important;
     width: 100%;
+
     .titleMessage {
       margin: auto 0;
-      padding-bottom: 10px;
+      // padding-bottom: 10px;
+      padding-bottom: 0 !important;
       text-align: left;
       font-weight: bold;
       font-size: 2.25rem;
@@ -27,6 +44,7 @@ header {
         font-size: 2rem;
       }
     }
+
     .userPhoto {
       margin-top: 0;
       margin-right: 35px;
