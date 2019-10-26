@@ -2,7 +2,9 @@
 
 ## Screen Breakdown
 
-1. Main screen {Paul/Benjamin}
+1. Welcome Page {Paul/Patrick}
+2. Register / Signin {Patrick/Benjamin/Paul}
+3. Main screen {Paul/Benjamin}
     1. Greeting message (top left) {Paul/Benjamin}
        (Add a message to users with no data suggesting creating new list.)
     2. User photo & link to profile Component (top right) {Adric/Paul/Benjamin}
