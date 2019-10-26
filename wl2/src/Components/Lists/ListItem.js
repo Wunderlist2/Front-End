@@ -197,7 +197,7 @@ class ListItem extends React.Component {
                 <FontAwesomeIcon icon={faArrowLeft} className="faIcon" />
               </NavLink>
             </div>
-            <div onClick={this.deleteList} className="headerRightIconCtn">
+            <div onClick={this.deleteList} className="headerRightIconCtn button">
               <FontAwesomeIcon icon={faTrashAlt} className="faIcon" />
             </div>
           </div>
