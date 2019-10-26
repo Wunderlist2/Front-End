@@ -1,62 +1,11 @@
 import React from "react";
-import "./App.css";
 import { BrowserRouter, Route } from "react-router-dom";
 import PrivateRoute from "./PrivateRoute";
-import {
-  WelcomePage,
-  Register,
-  Signin,
-  ForgotPassword,
-  Signout,
-  Profile,
-  Main,
-  ListItem,
-  TaskItem,
-  IndividualList,
-} from "./Components";
 
-const showDialog = dialog => {
-  let d = document.querySelector(`.${dialog}`);
-  if (d) {
-    d.classList.remove("hidden");
-  } else {
-    console.log("Unknown dialog specified to Main.js toggleDialog function.");
-  }
-};
-const hideDialog = dialog => {
-  let d = document.querySelector(`.${dialog}`);
-  if (d) {
-    d.classList.add("hidden");
-  } else {
-    console.log("Unknown dialog specified to Main.js toggleDialog function.");
-  }
-};
+import MainPage from "./Components/MainPage";
+import { WelcomePage, Register, Signin, ForgotPassword, Signout, Profile, ListItem } from "./Components";
 
-const showCreateListDialog = () => {
-  showDialog("CreateListDialog");
-};
-const hideCreateListDialog = () => {
-  hideDialog("CreateListDialog");
-};
-const showCreateTaskDialog = () => {
-  showDialog("CreateTaskDialog");
-};
-const hideCreateTaskDialog = () => {
-  hideDialog("CreateTaskDialog");
-};
-const showSearchDialog = () => {
-  showDialog("SearchDialog");
-};
-const hideSearchDialog = () => {
-  hideDialog("SearchDialog");
-};
-
-const showSetReminderDialog = () => {
-  showDialog("SetReminderDialog");
-};
-const hideSetReminderDialog = () => {
-  hideDialog("SetReminderDialog");
-};
+import "./App.css";
 
 function App() {
   return (
@@ -69,25 +18,10 @@ function App() {
         <Route exact path="/forgot" component={ForgotPassword} />
         <Route exact path="/signout" component={Signout} />
 
-        <PrivateRoute
-          exact
-          path="/my"
-          component={Main}
-          showDialog={showDialog}
-          hideDialog={hideDialog}
-          showCreateListDialog={showCreateListDialog}
-          hideCreateListDialog={hideCreateListDialog}
-        />
+        <PrivateRoute exact path="/my" component={MainPage} />
         <PrivateRoute path="/my/profile" component={Profile} />
-        <PrivateRoute
-          exact
-          path="/my/list"
-          component={ListItem}
-          showCreateTaskDialog={showCreateTaskDialog}
-          hideCreateTaskDialog={hideCreateTaskDialog}
-        />
-        <PrivateRoute exact path="/my/list/task" component={TaskItem} />
 
+        <PrivateRoute path="/my/list" component={ListItem} />
       </BrowserRouter>
     </div>
   );
