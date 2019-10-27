@@ -3,171 +3,264 @@ import { axiosWithAuth } from "../axiosWithAuth";
 import { UserContext } from "../contexts/UserContext";
 import { Link, NavLink } from "react-router-dom";
 
+import UserProfile from "./UserProfile";
+
+import Dialog from '@material-ui/core/Dialog';
+import Fab from '@material-ui/core/Fab';
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+
 import { Modal } from 'reactstrap';
 
 import defaultPhoto from '../generic-user-icon.jpg';
-import { faArrowRight, faPlus, faSearch } from "@fortawesome/free-solid-svg-icons";
+import {faArrowRight, faPlus, faSearch} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Button from "@material-ui/core/Button";
 
 class MainPage extends React.Component {
 
-  constructor(props) {
-    super(props)
-    this.state = {
-      user: {},
-      lists: [],
-      modal: false,
-      listTitle: '',
+    constructor(props) {
+        super(props)
+        this.state = {
+            user: {},
+            lists: [],
+            modal: false,
+            listTitle: '',
+            searchModal: false,
+            search: '',
+            isSearchVisible: false,
+        }
     }
-  }
 
-  componentDidMount() {
+    componentDidMount() {
 
-    axiosWithAuth()
-      .get(`/api/users/${localStorage.getItem('userID')}`)
-      .then(res => {
+        axiosWithAuth()
+            .get(`/api/users/${localStorage.getItem('userID')}`)
+            .then(res => {
+                this.setState({
+                    user: res.data,
+                })
+            })
+            .catch(err => {
+                console.log('Get Request: Main: User Data: Error: ', err)
+            })
+
+        axiosWithAuth()
+            .get(`/api/todos/`)
+            .then(res => {
+                this.setState({
+                    lists: res.data.reverse(),
+                })
+            })
+            .catch(err => {
+                console.log('Get Request: Main: Todo List: Error: ', err)
+            })
+
+    }
+
+    toggle = () => {
         this.setState({
-          user: res.data,
+            modal: !this.state.modal,
         })
-        console.log(res.data)
-      })
-      .catch(err => {
-        console.log('Get Request: Main: User Data: Error: ', err)
-      })
+    }
 
-    axiosWithAuth()
-      .get(`/api/todos/`)
-      .then(res => {
+    handleClickOpen = () => {
         this.setState({
-          lists: res.data.reverse(),
+            searchModal: true,
         })
-      })
-      .catch(err => {
-        console.log('Get Request: Main: Todo List: Error: ', err)
-      })
+    };
 
-  }
-
-  toggle = () => {
-    this.setState({
-      modal: !this.state.modal,
-    })
-  }
-
-  handleChanges = e => {
-    this.setState({
-      listTitle: e.target.value,
-    })
-  }
-
-  handleSubmit = e => {
-    e.preventDefault()
-    axiosWithAuth()
-      .post('/api/todos/', {
-        title: this.state.listTitle,
-        task: 'task',
-        setDate: 'today',
-      })
-      .then(res => {
-        console.log('Post Request: MainPage: Result: ', res.data)
-        this.state.lists.unshift(res.data)
+    handleClose = () => {
         this.setState({
-          lists: this.state.lists,
-          modal: !this.state.modal,
+            searchModal: false,
         })
-      })
-      .catch(err => console.log('Post Request: MainPage: Error: ', err))
-  }
+    };
 
-  Lists = () => {
-    if (this.state.lists.length >= 1) {
-      return (
-        <div className="lists">
-          <div className="myLists">My Lists</div>
-          {this.state.lists.map(list => {
+    search = () => {
+        this.setState({
+            searchModal: false,
+            lists: this.state.lists.filter(list => {
+                list.title.includes(this.state.search)
+            }),
+            isSearchVisible: true,
+        })
+    }
+
+    handleChanges = e => {
+        this.setState({
+            [e.target.name]: e.target.value,
+        })
+    }
+
+    handleSubmit = e => {
+        e.preventDefault()
+        axiosWithAuth()
+            .post('/api/todos/', {
+                title: this.state.listTitle,
+                task: 'task',
+                setDate: 'today',
+            })
+            .then(res => {
+                console.log('Post Request: MainPage: Result: ', res.data)
+                this.state.lists.unshift(res.data)
+                this.setState({
+                    lists: this.state.lists,
+                    modal: !this.state.modal,
+                })
+            })
+            .catch(err => console.log('Post Request: MainPage: Error: ', err))
+    }
+
+    BackButton = () => {
+        if (this.state.isSearchVisible === true) {
             return (
-              <div key={list.id} className="listEntryContainer">
-                <Link to={`/my/list?id=${list.id}`}>
-                  <div className="listEntryWithArrow">
-                    <div className="listEntry">
-                      <div className="listEntryTitle">{list.title}</div>
-                      <div className="listEntryCount">task count</div>
-                    </div>
-                    <FontAwesomeIcon icon={faArrowRight} className="faIcon"/>
-                  </div>
-                </Link>
-              </div>
+                <Fab
+                    size="medium"
+                    aria-label="back"
+                    className='backButtonMargin'
+                    style={{ position: 'fixed', left: '20px', backgroundColor: 'black', }}
+                    onClick={() => {
+                        axiosWithAuth()
+                            .get(`/api/todos/`)
+                            .then(res => {
+                                this.setState({
+                                    lists: res.data.reverse(),
+                                    isSearchVisible: false,
+                                })
+                            })
+                            .catch(err => {
+                                console.log('Get Request: Main: Todo List: Error: ', err)
+                            })
+                    }}
+                >
+                    <ArrowBackIcon style={{ color: '#ffffff', }} />
+                </Fab>
             );
-          })}
-        </div>
-      );
+        }
+        return null;
     }
-    else {
-      return (
-        <div className="noData">
-          <div className="welcomeDiv">Welcome to Wunderlist!</div>
-          <div className="hintDiv">Click the plus button below to add your first list.</div>
-        </div>
-      );
+
+    Lists = () => {
+        if (this.state.lists.length >= 1) {
+            return (
+                <div style={{ margin: '0 32px' }}>
+                    <div style={{ fontSize: '32px', fontWeight: 600, marginBottom: '56px', textAlign: 'left' }}>My Lists</div>
+                    {this.state.lists.map(list => {
+                        return (
+                            <div key={list.id} style={{ width: '50%', margin: '0 64px 32px', }}>
+                                <Link to={`/my/list?id=${list.id}`} >
+                                    <div  style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
+                                        <div style={{ display: 'block', marginRight: '16px', textAlign: 'left' }}>
+                                            <div style={{ marginBottom: '8px', fontSize: '24px', fontWeight: 600 }}>{list.title}</div>
+                                            <div style={{ fontSize: '16px', fontWeight: 400, color: '#757575' }}>task count</div>
+                                        </div>
+                                        <FontAwesomeIcon icon={faArrowRight} style={{ fontSize: '24px' }} />
+                                    </div>
+                                </Link>
+                            </div>
+                        );
+                    })}
+                </div>
+            );
+        }
+        else if (this.state.lists.length < 1 && this.state.isSearchVisible === false) {
+            return (
+                <div className="noData" style={{ width: '90%', margin: '0 auto 112px', }}>
+                    <div style={{ fontSize: '32px', fontWeight: 600, marginBottom: '56px', textAlign: 'left' }}>Welcome to Wunderlist!</div>
+                    <div style={{ fontSize: '24px', fontWeight: 400, color: '#757575', textAlign: 'left' }}>Click the plus button below to add your first list.</div>
+                </div>
+            );
+        }
+        else {
+            return (
+                <div style={{ minHeight: '300px', width: '100%', }} />
+            );
+        }
     }
-  }
 
-  Modal = () => {
-    return (
-      <div>
-        <Modal isOpen={this.state.modal} toggle={this.toggle} className="centeredModal">
-          <div className="modalDiv">
+    SearchForm = () => {
+        return (
             <div>
-              <input
-                id="listTitle"
-                label="Type to name your list"
-                name="listTitle"
-                placeholder="Type to name your list"
-                className="modalInput"
-                autoFocus
-                onChange={this.handleChanges}
-              />
+                <Dialog
+                    open={this.state.searchModal}
+                    onClose={this.handleClose}
+                    aria-labelledby="form-dialog-title"
+                >
+                    <div className="createListModal">
+                        <div>
+                            <input
+                                id="Search"
+                                label="Search..."
+                                name="search"
+                                placeholder="Type here..."
+                                className="listTitleInput"
+                                autoFocus
+                                onChange={this.handleChanges}
+                            />
+                        </div>
+                        <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'flex-end' }}>
+                            <button className="cancelNewListButton" onClick={this.handleClose}>Cancel</button>
+                            <button className="createNewListButton" onClick={this.search}>Search</button>
+                        </div>
+                    </div>
+                </Dialog>
             </div>
-            <div className="modalButtonDiv">
-              <button className="cancelNewListButton" onClick={this.toggle}>Cancel</button>
-              <button className="createNewListButton" onClick={this.handleSubmit}>Create</button>{' '}
-            </div>
-          </div>
-        </Modal>
-      </div>
-    );
-  }
+        );
+    }
 
-  render() {
-    return (
-      <UserContext.Provider user={this.state.user}>
-        <header>
-          <div className="title">
-            <span className="titleMessage">
-              {`Hello,  ${this.state.user.first_name}!`}
-            </span>
-            <span className="userPhoto">
-              <NavLink to="/my/profile">
-                <img src={defaultPhoto} alt="User" />
-              </NavLink>
-            </span>
-          </div>
-        </header>
-        <this.Modal />
-        <this.Lists />
-        <footer>
-          <div className="footerItems">
+    Modal = () => {
+        return (
             <div>
-              <FontAwesomeIcon icon={faSearch} className="button searchButton" />
+                <Modal isOpen={this.state.modal} toggle={this.toggle} style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', backgroundColor: 'rgba(0,0,0,0.54)', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                    <div className="createListModal">
+                        <div>
+                            <input
+                                id="listTitle"
+                                label="Type to name your list"
+                                name="listTitle"
+                                placeholder="Type to name your list"
+                                className="listTitleInput"
+                                autoFocus
+                                onChange={this.handleChanges}
+                            />
+                        </div>
+                        <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'flex-end' }}>
+                            <button className="cancelNewListButton" onClick={this.toggle}>Cancel</button>
+                            <button className="createNewListButton" onClick={this.handleSubmit}>Create</button>{' '}
+                        </div>
+                    </div>
+                </Modal>
             </div>
-            <div onClick={this.toggle}>
-              <FontAwesomeIcon icon={faPlus} className="button createButton" />
-            </div>
-          </div>
-        </footer>
-      </UserContext.Provider>
-    );
-  }
+        );
+    }
+
+    render() {
+        return (
+            <UserContext.Provider user={this.state.user}>
+                <header>
+                    <div className="title">
+                        <span className="titleMessage">
+                            {`Hello,  ${this.state.user.first_name}!`}
+                        </span>
+                        <UserProfile user={this.state.user} history={this.props.history} />
+                    </div>
+                </header>
+                <this.Modal />
+                <this.SearchForm />
+                <this.BackButton />
+                <this.Lists />
+                <footer>
+                    <div className="footerItems">
+                        <div onClick={this.handleClickOpen}>
+                            <FontAwesomeIcon icon={faSearch} className="button searchButton" />
+                        </div>
+                        <div onClick={this.toggle}>
+                            <FontAwesomeIcon icon={faPlus} className="button createButton" />
+                        </div>
+                    </div>
+                </footer>
+            </UserContext.Provider>
+        );
+    }
 
 }
 
