@@ -1,8 +1,8 @@
 html {
-  min-height: 100% !important;
+  /* min-height: 100% !important; */
 }
 body {
-  min-height: 100% !important;
+  /* min-height: 100% !important; */
 }
 
 #root {
@@ -135,14 +135,6 @@ header {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-}
-
-.headerLeftIconCtn {
-
-}
-
-.headerRightIconCtn {
-
 }
 
 .footerListItem {

@@ -61,6 +61,68 @@ code {
   display: none;
 }
 
+//modal styles
+.centeredModal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.54);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .modalDiv {
+    background-color: #000000;
+    padding: 32px;
+    margin: 16px;
+    border-radius: 10px;
+    color: white;
+    max-width: 600px;
+
+    .modalInput {
+      border: none;
+      background-color: #000000;
+      font-weight: 600;
+      font-size: 32px;
+      color: white;
+      margin-bottom: 32px;
+      outline: none;
+    }
+  }
+
+  .modalButtonDiv {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+
+    .cancelNewListButton {
+      border: none !important;
+      background-color: #000000 !important;
+      color: white !important;
+      font-size: 16px !important;
+      font-weight: 600;
+      margin-right: 16px;
+      padding: 12px 16px;
+      outline: none;
+      cursor: pointer;
+      border-radius: 10px;
+    }
+    .createNewListButton {
+      background-color: #fce959 !important;
+      color: #1c1c1c !important;
+      border: none !important;
+      font-size: 16px !important;
+      font-weight: 600;
+      padding: 12px 16px;
+      outline: none;
+      cursor: pointer;
+      border-radius: 10px;
+    }
+  }
+}
+
 .form-container {
   margin: calc(50vh - 25vh) auto;
 }
@@ -100,6 +162,9 @@ code {
 
 .button {
   cursor: pointer;
+}
+.faIcon {
+  font-size: 24px;
 }
 
 .qpioW {
@@ -216,7 +281,7 @@ code {
   }
 }
 
-//register and signin styles
+//Register.js and Signin.js styles
 .registerContainer {
   display: flex;
   align-items: center;
@@ -288,8 +353,7 @@ a {
   }
 }
 
-//welcome page styles
-
+//WelcomePage.js styles
 .welcomePageContainer {
   height: 100vh;
   display: flex;
@@ -345,95 +409,9 @@ a {
     }
   }
 }
-
-//ListItem.js styles
-.listsPageContainer {
+.welcomepage-socialmedia-container {
   display: flex;
-  align-items: center;
   justify-content: center;
-
-  .listsContainer {
-    display: flex;
-    justify-content: flex-start;
-    flex-direction: column;
-    width: 50%;
-    h3 {
-      margin-left: 5%;
-      text-align: left;
-    }
-  }
-  .taskContainer {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    margin-left: 10%;
-  }
-  .taskPlusCheckbox {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    input {
-      margin-right: 20%;
-    }
-  }
-  .dateContainer {
-    display: flex;
-    justify-content: flex-start;
-    margin-top: -25px;
-  }
-  .buttonContainer {
-    display: flex;
-    flex-direction: flex-start;
-    margin-bottom: 20px;
-  }
-  .listsButton {
-    font-weight: bold;
-    background: black;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    margin-left: 10%;
-    padding: 5px 3px;
-    width: 100px;
-    &:hover {
-      background: white;
-      color: black;
-      border: 1px solid black;
-    }
-  }
-}
-// Profile styles
-input.apple-switch {
-  position: relative;
-  appearance: none;
-  outline: none;
-  width: 50px;
-  height: 30px;
-  background-color: #ffffff;
-  border: 1px solid #d9dadc;
-  border-radius: 50px;
-  box-shadow: inset -20px 0 0 0 #ffffff;
-  transition-duration: 200ms;
-}
-
-input.apple-switch:after {
-  content: "";
-  position: absolute;
-  top: 1px;
-  left: 1px;
-  width: 26px;
-  height: 26px;
-  background-color: transparent;
-  border-radius: 50%;
-  box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.2);
-}
-
-input.apple-switch:checked {
-  border-color: @secondary-blue;
-  box-shadow: inset 20px 0 0 0 @secondary-blue;
-}
-
-input.apple-switch:checked:after {
-  left: 20px;
-  box-shadow: -2px 4px 3px rgba(0, 0, 0, 0.05);
+  margin: 0 auto;
+  font-size: 2.125rem;
 }
