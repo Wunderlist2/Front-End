@@ -241,7 +241,7 @@ class MainPage extends React.Component {
                         <span className="titleMessage">
                             {`Hello,  ${this.state.user.first_name}!`}
                         </span>
-                        <UserProfile user={this.state.user} />
+                        <UserProfile user={this.state.user} history={this.props.history} />
                     </div>
                 </header>
                 <this.Modal />

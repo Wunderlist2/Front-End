@@ -10,7 +10,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faBell, faCog, faEnvelope, faPortrait, faVolumeDown} from "@fortawesome/free-solid-svg-icons";
+import {faBell, faCog, faEnvelope, faPortrait, faSignOutAlt, faVolumeDown} from "@fortawesome/free-solid-svg-icons";
 
 export default function UserProfile(props) {
     // const { user } = React.useContext(UserContext)
@@ -68,6 +68,16 @@ export default function UserProfile(props) {
                             <div style={{height: '36px', display: 'flex', alignItems: 'center', margin: '24px auto', fontSize: '18px'}}>
                                 <FontAwesomeIcon icon={faEnvelope} alt='test' style={{height: '24px', width: '24px', marginRight: '16px'}}/>
                                 Email
+                            </div>
+                            <div
+                                onClick={() => {
+                                    localStorage.clear()
+                                    props.history.push('/')
+                                }}
+                                style={{height: '36px', display: 'flex', alignItems: 'center', margin: '24px auto', fontSize: '18px', cursor: 'pointer'}}
+                            >
+                                <FontAwesomeIcon icon={faSignOutAlt} alt='test' style={{height: '24px', width: '24px', marginRight: '16px'}}/>
+                                Sign out
                             </div>
                         </DialogContent>
                         <DialogActions>
