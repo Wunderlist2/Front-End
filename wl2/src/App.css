@@ -89,6 +89,14 @@ header {
   color: black;
 }
 
+.MuiDialog-paperWidthSm {
+  background-color: rgba(0, 0, 0, 0) !important;
+}
+
+.MuiPaper-elevation24 {
+  box-shadow: none !important;
+}
+
 .cancelNewListButton {
   border: none !important;
   background-color: #000000 !important;

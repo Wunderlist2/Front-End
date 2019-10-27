@@ -5,7 +5,7 @@ import { axiosWithAuth } from "../../axiosWithAuth";
 import { Modal } from 'reactstrap';
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowLeft, faArrowRight, faPlus, faEdit, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
+import { faArrowLeft, faSquare, faCheckSquare, faPlus, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 
 class ListItem extends React.Component {
 
@@ -40,7 +40,6 @@ class ListItem extends React.Component {
                         this.setState({
                             list: res.data,
                         })
-                        console.log('Get Request: ListItem.js: Result: ', res)
                     })
                     .catch(err => {
                         console.log('Get Request: ListItem.js: Error: ', err)
@@ -119,6 +118,45 @@ class ListItem extends React.Component {
         this.editList()
     }
 
+    TaskItem = props => {
+        const [complete, setComplete] = React.useState(false)
+        const handleClick = () => {
+            setComplete(!complete)
+        }
+        if (complete === false) {
+            return (
+                <div key={props.task.id} style={{ width: '50%', margin: '0 64px 32px', }}>
+                    <div
+                        onClick={handleClick}
+                        style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}
+                    >
+                        <div style={{ display: 'block', marginRight: '16px', textAlign: 'left' }}>
+                            <div style={{ marginBottom: '8px', fontSize: '24px', fontWeight: 600 }}>{props.task.taskTitle}</div>
+                            <div style={{ fontSize: '16px', fontWeight: 400, color: '#757575' }}>{props.task.setDate}</div>
+                        </div>
+                        <FontAwesomeIcon icon={faSquare} style={{ fontSize: '24px' }} />
+                    </div>
+                </div>
+            )
+        }
+        else {
+            return (
+                <div key={props.task.id} style={{ width: '50%', margin: '0 64px 32px', }}>
+                    <div
+                        onClick={handleClick}
+                        style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', textDecoration: 'line-through',}}
+                    >
+                        <div style={{ display: 'block', marginRight: '16px', textAlign: 'left' }}>
+                            <div style={{ marginBottom: '8px', fontSize: '24px', fontWeight: 600 }}>{props.task.taskTitle}</div>
+                            <div style={{ fontSize: '16px', fontWeight: 400, color: '#757575' }}>{props.task.setDate}</div>
+                        </div>
+                        <FontAwesomeIcon icon={faCheckSquare} style={{ fontSize: '24px' }} />
+                    </div>
+                </div>
+            )
+        }
+    }
+
     Tasks = () => {
         return (
             <div style={{ margin: '0 32px' }}>
@@ -136,19 +174,11 @@ class ListItem extends React.Component {
                     />
                 </form>
 
-                    {this.state.tasks.map(task => {
-                        return (
-                            <div key={task.id} style={{ width: '50%', margin: '0 64px 32px', }}>
-                                <div  style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
-                                    <div style={{ display: 'block', marginRight: '16px', textAlign: 'left' }}>
-                                        <div style={{ marginBottom: '8px', fontSize: '24px', fontWeight: 600 }}>{task.taskTitle}</div>
-                                        <div style={{ fontSize: '16px', fontWeight: 400, color: '#757575' }}>{task.setDate}</div>
-                                    </div>
-                                    <FontAwesomeIcon icon={faArrowRight} style={{ fontSize: '24px' }} />
-                                </div>
-                            </div>
-                        );
-                    })}
+                {this.state.tasks.map(task => {
+                    return (
+                        <this.TaskItem task={task} />
+                    );
+                })}
 
             </div>
         );

@@ -3,11 +3,18 @@ import { axiosWithAuth } from "../axiosWithAuth";
 import { UserContext } from "../contexts/UserContext";
 import { Link, NavLink } from "react-router-dom";
 
+import UserProfile from "./UserProfile";
+
+import Dialog from '@material-ui/core/Dialog';
+import Fab from '@material-ui/core/Fab';
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+
 import { Modal } from 'reactstrap';
 
 import defaultPhoto from '../generic-user-icon.jpg';
 import {faArrowRight, faPlus, faSearch} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Button from "@material-ui/core/Button";
 
 class MainPage extends React.Component {
 
@@ -18,6 +25,9 @@ class MainPage extends React.Component {
             lists: [],
             modal: false,
             listTitle: '',
+            searchModal: false,
+            search: '',
+            isSearchVisible: false,
         }
     }
 
@@ -29,7 +39,6 @@ class MainPage extends React.Component {
                 this.setState({
                     user: res.data,
                 })
-                console.log(res.data)
             })
             .catch(err => {
                 console.log('Get Request: Main: User Data: Error: ', err)
@@ -54,9 +63,31 @@ class MainPage extends React.Component {
         })
     }
 
+    handleClickOpen = () => {
+        this.setState({
+            searchModal: true,
+        })
+    };
+
+    handleClose = () => {
+        this.setState({
+            searchModal: false,
+        })
+    };
+
+    search = () => {
+        this.setState({
+            searchModal: false,
+            lists: this.state.lists.filter(list => {
+                list.title.includes(this.state.search)
+            }),
+            isSearchVisible: true,
+        })
+    }
+
     handleChanges = e => {
         this.setState({
-            listTitle: e.target.value,
+            [e.target.name]: e.target.value,
         })
     }
 
@@ -77,6 +108,35 @@ class MainPage extends React.Component {
                 })
             })
             .catch(err => console.log('Post Request: MainPage: Error: ', err))
+    }
+
+    BackButton = () => {
+        if (this.state.isSearchVisible === true) {
+            return (
+                <Fab
+                    size="medium"
+                    aria-label="back"
+                    className='backButtonMargin'
+                    style={{ position: 'fixed', left: '20px', backgroundColor: 'black', }}
+                    onClick={() => {
+                        axiosWithAuth()
+                            .get(`/api/todos/`)
+                            .then(res => {
+                                this.setState({
+                                    lists: res.data.reverse(),
+                                    isSearchVisible: false,
+                                })
+                            })
+                            .catch(err => {
+                                console.log('Get Request: Main: Todo List: Error: ', err)
+                            })
+                    }}
+                >
+                    <ArrowBackIcon style={{ color: '#ffffff', }} />
+                </Fab>
+            );
+        }
+        return null;
     }
 
     Lists = () => {
@@ -102,7 +162,7 @@ class MainPage extends React.Component {
                 </div>
             );
         }
-        else {
+        else if (this.state.lists.length < 1 && this.state.isSearchVisible === false) {
             return (
                 <div className="noData" style={{ width: '90%', margin: '0 auto 112px', }}>
                     <div style={{ fontSize: '32px', fontWeight: 600, marginBottom: '56px', textAlign: 'left' }}>Welcome to Wunderlist!</div>
@@ -110,6 +170,41 @@ class MainPage extends React.Component {
                 </div>
             );
         }
+        else {
+            return (
+                <div style={{ minHeight: '300px', width: '100%', }} />
+            );
+        }
+    }
+
+    SearchForm = () => {
+        return (
+            <div>
+                <Dialog
+                    open={this.state.searchModal}
+                    onClose={this.handleClose}
+                    aria-labelledby="form-dialog-title"
+                >
+                    <div className="createListModal">
+                        <div>
+                            <input
+                                id="Search"
+                                label="Search..."
+                                name="search"
+                                placeholder="Type here..."
+                                className="listTitleInput"
+                                autoFocus
+                                onChange={this.handleChanges}
+                            />
+                        </div>
+                        <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'flex-end' }}>
+                            <button className="cancelNewListButton" onClick={this.handleClose}>Cancel</button>
+                            <button className="createNewListButton" onClick={this.search}>Search</button>
+                        </div>
+                    </div>
+                </Dialog>
+            </div>
+        );
     }
 
     Modal = () => {
@@ -146,18 +241,16 @@ class MainPage extends React.Component {
                         <span className="titleMessage">
                             {`Hello,  ${this.state.user.first_name}!`}
                         </span>
-                        <span className="userPhoto">
-                            <NavLink to="/my/profile">
-                                <img src={defaultPhoto} alt="User" />
-                            </NavLink>
-                        </span>
+                        <UserProfile user={this.state.user} />
                     </div>
                 </header>
                 <this.Modal />
+                <this.SearchForm />
+                <this.BackButton />
                 <this.Lists />
                 <footer>
                     <div className="footerItems">
-                        <div>
+                        <div onClick={this.handleClickOpen}>
                             <FontAwesomeIcon icon={faSearch} className="button searchButton" />
                         </div>
                         <div onClick={this.toggle}>
